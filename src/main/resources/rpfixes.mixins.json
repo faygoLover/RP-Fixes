@@ -8,7 +8,8 @@
   "mixins": [
     "worldedit.WorldEditingCapabilityMixin",
     "worldedit.WeBlockStateMixin",
-    "terralith.WorldDimensionsMixin"
+    "terralith.WorldDimensionsMixin",
+    "customnpcs.CnpcSchedulerAccess"
   ],
   "injectors": {
     "defaultRequire": 1

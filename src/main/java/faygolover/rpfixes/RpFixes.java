@@ -29,6 +29,9 @@ public class RpFixes {
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onAttack);
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onUseOnBlock);
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onBreak);
+        // Custom NPCs: его пул задач не держит процесс после остановки сервера.
+        faygolover.rpfixes.fix.CnpcScheduler.init();
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CnpcScheduler::onServerStopped);
         // Клиент: эмоции (player-animation-lib) поверх Fresh Animations (EMF).
         if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
             var modBus = net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus();

@@ -24,6 +24,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
     public static final ForgeConfigSpec.BooleanValue DEBUG_SKIN;
     public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
+    public static final ForgeConfigSpec.BooleanValue CNPC_SCHEDULER_SHUTDOWN;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -69,6 +70,9 @@ public final class FixesConfig {
                 .define("debug_skin", false);
         CNPC_KEEP_PLAYER_SKIN = B.comment("Custom NPCs, клиент: не затирать настоящий скин игрока (Ely.by) стандартным. Скин, заданный ГМом через CNPC, работает.")
                 .define("cnpc_keep_player_skin", true);
+        CNPC_SCHEDULER_SHUTDOWN = B.comment("Custom NPCs, сервер: закрывать его пул задач после остановки сервера (иначе процесс висел на выключении).",
+                        "Потоки пула фоновые всегда.")
+                .define("cnpc_scheduler_shutdown", true);
         B.pop();
         SPEC = B.build();
     }
