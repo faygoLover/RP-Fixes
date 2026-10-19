@@ -19,6 +19,7 @@
     "cuffed.PlayerModelCuffedMixin",
     "cuffed.AnimationApplierCuffedMixin",
     "securitycraft.FogRendererFrameFeedMixin",
-    "debug.ClientPacketListenerSkinDebugMixin"
+    "debug.ClientPacketListenerSkinDebugMixin",
+    "customnpcs.SkinUtilMixin"
   ]
 }

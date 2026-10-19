@@ -23,6 +23,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.IntValue PAINTINGS_GM_LEVEL;
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
     public static final ForgeConfigSpec.BooleanValue DEBUG_SKIN;
+    public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -66,6 +67,8 @@ public final class FixesConfig {
                 .define("terralith_keep_world_type", true);
         DEBUG_SKIN = B.comment("Диагностика, клиент: первые 2 минуты после входа писать в лог смену своего скина и пакеты списка игроков про себя.")
                 .define("debug_skin", false);
+        CNPC_KEEP_PLAYER_SKIN = B.comment("Custom NPCs, клиент: не затирать настоящий скин игрока (Ely.by) стандартным. Скин, заданный ГМом через CNPC, работает.")
+                .define("cnpc_keep_player_skin", true);
         B.pop();
         SPEC = B.build();
     }
