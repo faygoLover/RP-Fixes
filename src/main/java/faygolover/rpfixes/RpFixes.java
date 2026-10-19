@@ -36,6 +36,7 @@ public class RpFixes {
             // Hold My Items: исключить предметы со своим видом в руке — когда все моды загружены.
             modBus.addListener((net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent e) -> e.enqueueWork(faygolover.rpfixes.fix.HmiAutoExclude::init));
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.HmiAutoExclude::onClientTick);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.SkinDebug::onClientTick);
         }
     }
 }

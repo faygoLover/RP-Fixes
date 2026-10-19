@@ -23,7 +23,7 @@ public final class CuffedEmotes {
     public static boolean locked(String part) {
         Player p = CURRENT.get();
         if (p == null || !FixesConfig.CUFFED_EMOTE_LOCK.get()) return false;
-        if (p instanceof IDetainableEntity d && d.getDetained() == 0) return true; // в колодке: Cuffed ставит позу целиком
+        if (p instanceof IDetainableEntity d && d.getDetained() > -1) return true; // в колодке: Cuffed ставит позу целиком
         if (!(p instanceof IRestrainableEntity r) || !r.isRestrained()) return false;
         return switch (part) {
             case "leftArm", "rightArm" -> {

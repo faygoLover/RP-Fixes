@@ -19,7 +19,6 @@
     "cuffed.PlayerModelCuffedMixin",
     "cuffed.AnimationApplierCuffedMixin",
     "securitycraft.FogRendererFrameFeedMixin",
-    "debug.PlayerModelLegsDebugMixin",
-    "debug.AgeableListModelLegsDebugMixin"
+    "debug.ClientPacketListenerSkinDebugMixin"
   ]
 }

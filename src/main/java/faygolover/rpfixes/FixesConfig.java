@@ -22,7 +22,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue PAINTINGS_GM_ONLY;
     public static final ForgeConfigSpec.IntValue PAINTINGS_GM_LEVEL;
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
-    public static final ForgeConfigSpec.BooleanValue DEBUG_EMOTE_LEGS;
+    public static final ForgeConfigSpec.BooleanValue DEBUG_SKIN;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -64,8 +64,8 @@ public final class FixesConfig {
         TERRALITH_KEEP_WORLD_TYPE = B.comment("Terralith: суперплоский, «один биом» и отладочный мир остаются такими, как выбраны",
                         "(его датапак подменял любой тип мира). Обычный, «большие биомы» и «расширенный» — Terralith как был.")
                 .define("terralith_keep_world_type", true);
-        DEBUG_EMOTE_LEGS = B.comment("Диагностика, клиент: пока играет эмоция, писать в лог положение ног своего персонажа (после позы и при отрисовке).")
-                .define("debug_emote_legs", false);
+        DEBUG_SKIN = B.comment("Диагностика, клиент: первые 2 минуты после входа писать в лог смену своего скина и пакеты списка игроков про себя.")
+                .define("debug_skin", false);
         B.pop();
         SPEC = B.build();
     }

@@ -44,8 +44,7 @@ public final class EmoteFixes {
     }
 
     /** Игрок, на котором сейчас играет анимация player-animation-lib (эмоция, упражнение). */
-    public static boolean animating(Object entity) {
-        if (iPlayer == null) return false;
+    private static boolean animating(Object entity) {
         if (!(entity instanceof Player) || !iPlayer.isInstance(entity)) return false;
         try {
             Object stack = stackOf.invoke(entity);
