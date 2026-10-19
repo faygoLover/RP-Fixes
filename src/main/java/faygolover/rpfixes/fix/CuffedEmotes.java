@@ -24,7 +24,7 @@ public final class CuffedEmotes {
         Player p = CURRENT.get();
         if (p == null || !FixesConfig.CUFFED_EMOTE_LOCK.get()) return false;
         if (p instanceof IDetainableEntity d && d.getDetained() == 0) return true; // в колодке: Cuffed ставит позу целиком
-        if (!(p instanceof IRestrainableEntity r)) return false;
+        if (!(p instanceof IRestrainableEntity r) || !r.isRestrained()) return false;
         return switch (part) {
             case "leftArm", "rightArm" -> {
                 ArmRestraintAnimationFlags f = !set(r.getArmRestraintId()) ? null : RestraintAPI.getArmAnimationFlagByKey(r.getArmRestraintId());
@@ -36,8 +36,11 @@ public final class CuffedEmotes {
         };
     }
 
-    /** Путы надеты. Без пут Cuffed хранит пустую строку, и id получается «minecraft:» (не null) — это «нет». */
+    /**
+     * Путы надеты. Без пут Cuffed хранит пустую строку («minecraft:») или «minecraft:air» (так отдаёт его capability) —
+     * это «нет». Из-за «air» ноги считались связанными у всех, и эмоции их не двигали (находка Sports 111).
+     */
     private static boolean set(net.minecraft.resources.ResourceLocation id) {
-        return id != null && !id.getPath().isEmpty();
+        return id != null && !id.getPath().isEmpty() && !id.getPath().equals("air");
     }
 }
