@@ -8,7 +8,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 authors="${mod_authors}"
 description='''${mod_description}'''
-# Заплатки серверные: клиенту мод не нужен, сервер пускает клиентов и без него.
+# Заплатки: и клиентские, и серверные; сервер пускает клиентов и без мода.
 displayTest="IGNORE_ALL_VERSION"
 
 [[dependencies.${mod_id}]]

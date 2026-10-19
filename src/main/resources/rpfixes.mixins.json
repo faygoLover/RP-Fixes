@@ -1,0 +1,25 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "faygolover.rpfixes.mixin",
+  "plugin": "faygolover.rpfixes.mixin.RpFixesMixinPlugin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "rpfixes.refmap.json",
+  "mixins": [
+    "worldedit.WorldEditingCapabilityMixin",
+    "worldedit.WeBlockStateMixin",
+    "terralith.WorldDimensionsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "bendy.BendHelperMixin",
+    "bendy.AnimationApplierBendMixin",
+    "cuffed.PlayerModelCuffedMixin",
+    "cuffed.AnimationApplierCuffedMixin",
+    "securitycraft.FogRendererFrameFeedMixin",
+    "debug.PlayerModelLegsDebugMixin",
+    "debug.AgeableListModelLegsDebugMixin"
+  ]
+}

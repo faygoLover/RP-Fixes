@@ -1,9 +1,21 @@
+buildscript {
+    repositories {
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+
 plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
+
+apply plugin: 'org.spongepowered.mixin'
 
 version = mod_version
 group = mod_group_id
@@ -54,8 +66,20 @@ minecraft {
 }
 
 
+// Вставки в чужие моды (только remap=false, цели — классы модов): WorldEdit — ленивые состояния блоков.
+mixin {
+    add sourceSets.main, "${mod_id}.refmap.json"
+    config "${mod_id}.mixins.json"
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    // WorldEdit 7.2.15 (jar из сборки, libs/ в .gitignore) — только для компиляции заплатки; в игре он не обязателен.
+    compileOnly files('libs/worldedit-mod-7.2.15.jar')
+    // player-animation-lib + bendy-lib — только для компиляции заплатки сгибов.
+    compileOnly files('libs/player-animation-lib-forge-1.0.2-rc1+1.20.jar', 'libs/bendy-lib-forge-4.0.0.jar')
+    compileOnly files('libs/Cuffed-1.20.1-1.3.13.jar')
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 tasks.named('processResources', ProcessResources).configure {

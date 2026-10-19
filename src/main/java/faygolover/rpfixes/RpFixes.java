@@ -22,9 +22,20 @@ public class RpFixes {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FixesConfig.SPEC);
         MinecraftForge.EVENT_BUS.addListener(LeakFixes::onLogout);
         MinecraftForge.EVENT_BUS.addListener(LeakFixes::onServerTick);
+        // Immersive Paintings: картины — только ГМу.
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onJoin);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onInteract);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onInteractSpecific);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onAttack);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onUseOnBlock);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onBreak);
         // Клиент: эмоции (player-animation-lib) поверх Fresh Animations (EMF).
-        if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient())
-            net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus().addListener(
-                    (net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e) -> e.enqueueWork(faygolover.rpfixes.fix.EmoteFixes::init));
+        if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
+            var modBus = net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus();
+            modBus.addListener((net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e) -> e.enqueueWork(faygolover.rpfixes.fix.EmoteFixes::init));
+            // Hold My Items: исключить предметы со своим видом в руке — когда все моды загружены.
+            modBus.addListener((net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent e) -> e.enqueueWork(faygolover.rpfixes.fix.HmiAutoExclude::init));
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.HmiAutoExclude::onClientTick);
+        }
     }
 }

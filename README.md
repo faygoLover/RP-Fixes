@@ -8,8 +8,16 @@
 |---|---|---|---|
 | утечка стрелков | Tacz Attribute Add (`taa`) | не держит в памяти вышедших игроков и убранных стрелков | `fixes.taa_shooter_leak` |
 | утечка игроков | Sanity: Descent Into Madness (`sanitydim`) | убирает вышедших игроков из таблицы спавна | `fixes.sanity_player_leak` |
+| ленивые состояния блоков | WorldEdit 7.2.x (`worldedit`) | при старте сервера WorldEdit строил свои копии всех состояний всех блоков сборки (~769 тыс., ~3 ГБ кучи); теперь — только для блоков, которых он коснулся. Команды работают как раньше | `fixes.worldedit_lazy_states` |
+| безопасные сгибы | bendy-lib + player-animation-lib | локти и колени гнутся только у кусков модели, которые это умеют; у моделей EMF/Fresh Animations и оружейных модов их пропускает вместо вылета | `fixes.safe_bends` |
+| Hold My Items и свои предметы | Hold My Items (`holdmyitems`) | HMI не трогает предметы со своим видом в руке: свой отрисовщик, своя поза рук или своя рука в 1-м лице (оружие, GeckoLib), и моды из списка. Дополняет его исключения в памяти, файл HMI не меняется | `fixes.hmi_auto_exclude`, `fixes.hmi_exclude_mods` |
+| туман камеры в рамке | SecurityCraft | пока рамка показывает вид с камеры, туман по её дальности обзора (своя вставка SecurityCraft не встаёт из-за Embeddium/Oculus) | `fixes.securitycraft_frame_fog` |
+| эмоции в путах | Cuffed + player-animation-lib | эмоция играет, но связанные части тела не двигает: руки и ноги в путах, голова в колодке; в колодке-блоке — ничего | `fixes.cuffed_emote_lock` |
 | эмоции и Fresh Animations | Entity Model Features + player-animation-lib (Emotecraft, RP Sports) | пока на игроке играет эмоция, EMF рисует его обычной моделью (`vanilla`) или только останавливает свои анимации (`pause`) | `fixes.emf_emote_mode` (`vanilla` / `pause` / `off`) |
+| картины только ГМу | Immersive Paintings (`immersive_paintings`) | ставить и менять картины и граффити — только с правами ГМа (op 2+), ломать — только в творческом режиме (взрывы и стрелы не берут), блок под картиной без прав не ломается. Сообщение игроку над хотбаром | `fixes.paintings_gm_only`, `fixes.paintings_gm_level` |
+| тип мира с Terralith | Terralith (`terralith`) | его датапак подменял любой тип мира: суперплоский, «один биом» и отладочный становились обычным миром Terralith. Теперь они такие, как выбраны; обычный, «большие биомы» и «расширенный» — Terralith как был. Старые миры не меняются | `fixes.terralith_keep_world_type` |
+| диагностика ног в эмоциях | player-animation-lib | пока на своём персонаже играет эмоция, раз в ~2 с пишет в лог ноги и штанины — после позы и при отрисовке (не больше 60 строк). По умолчанию выключена | `fixes.debug_emote_legs` |
 
 Каждая заплатка срабатывает, только если её мод установлен. Не подошла к версии мода — в лог предупреждение, и всё.
 
-Сборка: JDK 17, `gradlew.bat build`.
+Сборка: JDK 17, `gradlew.bat build`. Для заплатки WorldEdit нужны jar в `libs/`: `worldedit-mod-7.2.15.jar`, `player-animation-lib-forge-1.0.2-rc1+1.20.jar`, `bendy-lib-forge-4.0.0.jar`, `Cuffed-1.20.1-1.3.13.jar` (только компиляция, папка в .gitignore).
