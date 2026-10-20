@@ -21,6 +21,7 @@ public final class RpFixesMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".securitycraft.")) return has("securitycraft");
         if (mixinClassName.contains(".terralith.")) return has("terralith");
         if (mixinClassName.contains(".customnpcs.")) return has("customnpcs");
+        if (mixinClassName.contains(".figura.")) return has("figura");
         return true;
     }
 

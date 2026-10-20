@@ -26,6 +26,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue DEBUG_ALBUM;
     public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
     public static final ForgeConfigSpec.BooleanValue CNPC_SCHEDULER_SHUTDOWN;
+    public static final ForgeConfigSpec.BooleanValue FIGURA_INVENTORY_SCISSOR;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -76,6 +77,9 @@ public final class FixesConfig {
         CNPC_SCHEDULER_SHUTDOWN = B.comment("Custom NPCs, сервер: закрывать его пул задач после остановки сервера (иначе процесс висел на выключении).",
                         "Потоки пула фоновые всегда.")
                 .define("cnpc_scheduler_shutdown", true);
+        FIGURA_INVENTORY_SCISSOR = B.comment("Figura, клиент: игрок в окне инвентаря обрезается по ванильному окошку (рамка Figura 0.1.5 стоит",
+                        "как в творческом инвентаре и срезала голову по уровню глаз в обычном).")
+                .define("figura_inventory_scissor", true);
         B.pop();
         SPEC = B.build();
     }

@@ -23,6 +23,7 @@
     "securitycraft.FogRendererFrameFeedMixin",
     "debug.ClientPacketListenerSkinDebugMixin",
     "debug.MultiPlayerGameModeAlbumDebugMixin",
-    "customnpcs.SkinUtilMixin"
+    "customnpcs.SkinUtilMixin",
+    "figura.UIHelperInventoryScissorMixin"
   ]
 }
