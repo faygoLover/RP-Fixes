@@ -24,7 +24,6 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
     public static final ForgeConfigSpec.BooleanValue DEBUG_SKIN;
     public static final ForgeConfigSpec.BooleanValue DEBUG_ALBUM;
-    public static final ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> INVENTORYFREE_KEEP_SLOTS;
     public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
     public static final ForgeConfigSpec.BooleanValue CNPC_SCHEDULER_SHUTDOWN;
 
@@ -72,11 +71,6 @@ public final class FixesConfig {
                 .define("debug_skin", false);
         DEBUG_ALBUM = B.comment("Диагностика: клики в альбоме Exposure (клиент и сервер) — в лог.")
                 .define("debug_album", false);
-        INVENTORYFREE_KEEP_SLOTS = B.comment("InventoryFree: классы слотов, которые он не должен заворачивать в свой BlockedSlot (меню узнают их по классу).",
-                        "По умолчанию — слоты инвентаря в альбоме Exposure (иначе фото не кладутся в альбом).")
-                .defineListAllowEmpty(java.util.List.of("inventoryfree_keep_slots"),
-                        () -> java.util.List.of("io.github.mortuusars.exposure.world.inventory.slot.AlbumPlayerInventorySlot"),
-                        o -> o instanceof String);
         CNPC_KEEP_PLAYER_SKIN = B.comment("Custom NPCs, клиент: не затирать настоящий скин игрока (Ely.by) стандартным. Скин, заданный ГМом через CNPC, работает.")
                 .define("cnpc_keep_player_skin", true);
         CNPC_SCHEDULER_SHUTDOWN = B.comment("Custom NPCs, сервер: закрывать его пул задач после остановки сервера (иначе процесс висел на выключении).",
@@ -84,15 +78,5 @@ public final class FixesConfig {
                 .define("cnpc_scheduler_shutdown", true);
         B.pop();
         SPEC = B.build();
-    }
-
-    /** InventoryFree не заворачивает этот слот (класс — в {@link #INVENTORYFREE_KEEP_SLOTS}). */
-    public static boolean keepInventoryFreeSlot(net.minecraft.world.inventory.Slot slot) {
-        String name = slot.getClass().getName();
-        try {
-            return INVENTORYFREE_KEEP_SLOTS.get().contains(name);
-        } catch (IllegalStateException notLoadedYet) {
-            return name.equals("io.github.mortuusars.exposure.world.inventory.slot.AlbumPlayerInventorySlot");
-        }
     }
 }

@@ -10,8 +10,7 @@
     "worldedit.WeBlockStateMixin",
     "terralith.WorldDimensionsMixin",
     "customnpcs.CnpcSchedulerAccess",
-    "debug.ServerGamePacketListenerAlbumDebugMixin",
-    "inventoryfree.SlotBlockerMixin"
+    "debug.ServerGamePacketListenerAlbumDebugMixin"
   ],
   "injectors": {
     "defaultRequire": 1
