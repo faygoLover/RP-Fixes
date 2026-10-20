@@ -22,6 +22,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue PAINTINGS_GM_ONLY;
     public static final ForgeConfigSpec.IntValue PAINTINGS_GM_LEVEL;
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
+    public static final ForgeConfigSpec.BooleanValue TERRALITH_NO_INTRO;
     public static final ForgeConfigSpec.BooleanValue DEBUG_SKIN;
     public static final ForgeConfigSpec.BooleanValue DEBUG_ALBUM;
     public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
@@ -68,6 +69,8 @@ public final class FixesConfig {
         TERRALITH_KEEP_WORLD_TYPE = B.comment("Terralith: суперплоский, «один биом» и отладочный мир остаются такими, как выбраны",
                         "(его датапак подменял любой тип мира). Обычный, «большие биомы» и «расширенный» — Terralith как был.")
                 .define("terralith_keep_world_type", true);
+        TERRALITH_NO_INTRO = B.comment("Terralith: не писать в чат приветствие с рекламой при первом запуске мира.")
+                .define("terralith_no_intro", true);
         DEBUG_SKIN = B.comment("Диагностика, клиент: первые 2 минуты после входа писать в лог смену своего скина и пакеты списка игроков про себя.")
                 .define("debug_skin", false);
         DEBUG_ALBUM = B.comment("Диагностика: клики в альбоме Exposure (клиент и сервер) — в лог.")
