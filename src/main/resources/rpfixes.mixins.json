@@ -9,7 +9,8 @@
     "worldedit.WorldEditingCapabilityMixin",
     "worldedit.WeBlockStateMixin",
     "terralith.WorldDimensionsMixin",
-    "customnpcs.CnpcSchedulerAccess"
+    "customnpcs.CnpcSchedulerAccess",
+    "debug.ServerGamePacketListenerAlbumDebugMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -21,6 +22,7 @@
     "cuffed.AnimationApplierCuffedMixin",
     "securitycraft.FogRendererFrameFeedMixin",
     "debug.ClientPacketListenerSkinDebugMixin",
+    "debug.MultiPlayerGameModeAlbumDebugMixin",
     "customnpcs.SkinUtilMixin"
   ]
 }
