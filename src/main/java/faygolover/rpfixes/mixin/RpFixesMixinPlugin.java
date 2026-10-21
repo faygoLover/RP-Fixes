@@ -23,6 +23,7 @@ public final class RpFixesMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".customnpcs.")) return has("customnpcs");
         if (mixinClassName.contains(".figura.")) return has("figura");
         if (mixinClassName.contains(".effortless.")) return has("effortlessbuilding");
+        if (mixinClassName.contains(".anomaly.")) return has("anomaly_rephased");
         return true;
     }
 

@@ -29,6 +29,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
     public static final ForgeConfigSpec.BooleanValue CNPC_SCHEDULER_SHUTDOWN;
     public static final ForgeConfigSpec.BooleanValue FIGURA_INVENTORY_SCISSOR;
+    public static final ForgeConfigSpec.BooleanValue ANOMALY_OWN_POST_EFFECT;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -87,6 +88,9 @@ public final class FixesConfig {
         FIGURA_INVENTORY_SCISSOR = B.comment("Figura, клиент: игрок в окне инвентаря обрезается по ванильному окошку (рамка Figura 0.1.5 стоит",
                         "как в творческом инвентаре и срезала голову по уровню глаз в обычном).")
                 .define("figura_inventory_scissor", true);
+        ANOMALY_OWN_POST_EFFECT = B.comment("Anomaly Rephased, клиент: снимать только свой постэффект (phosphor). Иначе он каждый тик снимал",
+                        "любой — постэффект RP Medicine (боль, серость) пересобирался 20 раз в секунду, рывки.")
+                .define("anomaly_own_post_effect", true);
         B.pop();
         SPEC = B.build();
     }
