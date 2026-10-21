@@ -26,6 +26,11 @@
     "debug.MultiPlayerGameModeAlbumDebugMixin",
     "customnpcs.SkinUtilMixin",
     "figura.UIHelperInventoryScissorMixin",
-    "anomaly.PlayerCanSeeAnomalyPostEffectMixin"
+    "anomaly.PlayerCanSeeAnomalyPostEffectMixin",
+    "debuglimits.DebugRendererAccess",
+    "debuglimits.KeyboardDebugKeysMixin",
+    "debuglimits.LocalPlayerPermissionMixin",
+    "debuglimits.SubtitlesOptionMixin",
+    "debuglimits.DebugScreenTargetedMixin"
   ]
 }

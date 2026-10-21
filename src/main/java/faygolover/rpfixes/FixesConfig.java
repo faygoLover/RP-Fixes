@@ -30,6 +30,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CNPC_SCHEDULER_SHUTDOWN;
     public static final ForgeConfigSpec.BooleanValue FIGURA_INVENTORY_SCISSOR;
     public static final ForgeConfigSpec.BooleanValue ANOMALY_OWN_POST_EFFECT;
+    public static final ForgeConfigSpec.BooleanValue PLAYER_DEBUG_LIMITS;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -91,6 +92,9 @@ public final class FixesConfig {
         ANOMALY_OWN_POST_EFFECT = B.comment("Anomaly Rephased, клиент: снимать только свой постэффект (phosphor). Иначе он каждый тик снимал",
                         "любой — постэффект RP Medicine (боль, серость) пересобирался 20 раз в секунду, рывки.")
                 .define("anomaly_own_post_effect", true);
+        PLAYER_DEBUG_LIMITS = B.comment("Клиент: игрокам без op 2 на сервере нельзя хитбоксы (F3+B), границы чанков (F3+G), расширенные подсказки (F3+H),",
+                        "субтитры и правую колонку F3 (блок, жидкость, сущность под прицелом). Выключается при входе, включить не дают.")
+                .define("player_debug_limits", true);
         B.pop();
         SPEC = B.build();
     }
