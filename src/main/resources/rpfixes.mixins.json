@@ -11,7 +11,8 @@
     "terralith.WorldDimensionsMixin",
     "customnpcs.CnpcSchedulerAccess",
     "effortless.EffortlessLogMixin",
-    "debug.ServerGamePacketListenerAlbumDebugMixin"
+    "debug.ServerGamePacketListenerAlbumDebugMixin",
+    "breaching.NightstickLightsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -31,6 +32,8 @@
     "debuglimits.KeyboardDebugKeysMixin",
     "debuglimits.LocalPlayerPermissionMixin",
     "debuglimits.SubtitlesOptionMixin",
-    "debuglimits.DebugScreenTargetedMixin"
+    "debuglimits.DebugScreenTargetedMixin",
+    "tips.TipRenderHandlerMixin",
+    "fancymenu.ScreenCustomizationFirstTimeMixin"
   ]
 }

@@ -31,6 +31,9 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue FIGURA_INVENTORY_SCISSOR;
     public static final ForgeConfigSpec.BooleanValue ANOMALY_OWN_POST_EFFECT;
     public static final ForgeConfigSpec.BooleanValue PLAYER_DEBUG_LIMITS;
+    public static final ForgeConfigSpec.BooleanValue BREACHING_KEEP_LIGHTS;
+    public static final ForgeConfigSpec.BooleanValue TIPS_PAUSE_ONLY;
+    public static final ForgeConfigSpec.BooleanValue FANCYMENU_FIRST_TIME_ON_LEAVE;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -95,6 +98,16 @@ public final class FixesConfig {
         PLAYER_DEBUG_LIMITS = B.comment("Клиент: игрокам без op 2 на сервере нельзя хитбоксы (F3+B), границы чанков (F3+G), расширенные подсказки (F3+H),",
                         "субтитры и правую колонку F3 (блок, жидкость, сущность под прицелом). Выключается при входе, включить не дают.")
                 .define("player_debug_limits", true);
+        BREACHING_KEEP_LIGHTS = B.comment("TaCZ Tactical Breaching, сервер: не трогать чужие блоки света (minecraft:light). Мод при каждом входе игрока",
+                        "стирал ВСЕ блоки света в радиусе ~22 блоков (±4 по высоте), а луч фонарика дубинки забирал себе и потом убирал",
+                        "расставленные. С исправлением фонарик ставит и убирает только свои блоки в пустом воздухе.")
+                .define("breaching_keep_lights", true);
+        TIPS_PAUSE_ONLY = B.comment("Tips, клиент: цветные подсказки мода только на паузе (в углу) и на экране смерти. На экранах загрузки,",
+                        "подключения и отключения подсказки показывает меню сборки (FancyMenu), без второго слоя поверх.")
+                .define("tips_pause_only", true);
+        FANCYMENU_FIRST_TIME_ON_LEAVE = B.comment("FancyMenu, клиент: задержка «только в первый раз» считается отыгранной и тогда, когда с экрана ушли",
+                        "раньше конца анимации. Заставка главного меню не повторяется при выходе из мира.")
+                .define("fancymenu_first_time_on_leave", true);
         B.pop();
         SPEC = B.build();
     }
