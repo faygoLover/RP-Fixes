@@ -34,6 +34,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue BREACHING_KEEP_LIGHTS;
     public static final ForgeConfigSpec.BooleanValue TIPS_PAUSE_ONLY;
     public static final ForgeConfigSpec.BooleanValue FANCYMENU_FIRST_TIME_ON_LEAVE;
+    public static final ForgeConfigSpec.BooleanValue SA_FLASHLIGHT_OCCLUSION;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -108,6 +109,9 @@ public final class FixesConfig {
         FANCYMENU_FIRST_TIME_ON_LEAVE = B.comment("FancyMenu, клиент: задержка «только в первый раз» считается отыгранной и тогда, когда с экрана ушли",
                         "раньше конца анимации. Заставка главного меню не повторяется при выходе из мира.")
                 .define("fancymenu_first_time_on_leave", true);
+        SA_FLASHLIGHT_OCCLUSION = B.comment("Survivor's Arsenal, клиент: фонарь не светит сквозь стены. Фонарь, которого камера не видит, не рисуется;",
+                        "дальность луча обрезается по стене, в которую он упёрся. Свой фонарь от первого лица не меняется.")
+                .define("sa_flashlight_occlusion", true);
         B.pop();
         SPEC = B.build();
     }
