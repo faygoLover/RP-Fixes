@@ -26,7 +26,6 @@ public final class RpFixesMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".anomaly.")) return has("anomaly_rephased");
         if (mixinClassName.contains(".breaching.")) return has("tacz_tactical_breaching");
         if (mixinClassName.contains(".tips.")) return has("tipsmod");
-        if (mixinClassName.contains(".fancymenu.")) return has("fancymenu");
         if (mixinClassName.contains(".saflashlight.")) return has("sa_combat");
         return true;
     }

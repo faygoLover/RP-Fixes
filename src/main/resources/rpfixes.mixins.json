@@ -34,7 +34,6 @@
     "debuglimits.SubtitlesOptionMixin",
     "debuglimits.DebugScreenTargetedMixin",
     "tips.TipRenderHandlerMixin",
-    "fancymenu.ScreenCustomizationFirstTimeMixin",
     "saflashlight.FlashlightBeamRangeAccess",
     "saflashlight.FlashlightBeamOcclusionMixin"
   ]
