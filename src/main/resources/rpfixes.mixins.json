@@ -37,6 +37,7 @@
     "saflashlight.FlashlightBeamRangeAccess",
     "saflashlight.FlashlightBeamOcclusionMixin",
     "glowsticks.GlowStickLightMixin",
-    "glowsticks.GlowStickTrailLightMixin"
+    "glowsticks.GlowStickTrailLightMixin",
+    "emotecraft.EmoteSendForPlayerMixin"
   ]
 }

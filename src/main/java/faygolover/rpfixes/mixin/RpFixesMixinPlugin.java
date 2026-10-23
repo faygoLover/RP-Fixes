@@ -28,6 +28,7 @@ public final class RpFixesMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".tips.")) return has("tipsmod");
         if (mixinClassName.contains(".saflashlight.")) return has("sa_combat");
         if (mixinClassName.contains(".glowsticks.")) return has("glow_sticks");
+        if (mixinClassName.contains(".emotecraft.")) return has("emotecraft");
         return true;
     }
 
