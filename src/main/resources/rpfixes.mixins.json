@@ -35,6 +35,8 @@
     "debuglimits.DebugScreenTargetedMixin",
     "tips.TipRenderHandlerMixin",
     "saflashlight.FlashlightBeamRangeAccess",
-    "saflashlight.FlashlightBeamOcclusionMixin"
+    "saflashlight.FlashlightBeamOcclusionMixin",
+    "glowsticks.GlowStickLightMixin",
+    "glowsticks.GlowStickTrailLightMixin"
   ]
 }
