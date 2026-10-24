@@ -38,6 +38,7 @@
     "saflashlight.FlashlightBeamOcclusionMixin",
     "glowsticks.GlowStickLightMixin",
     "glowsticks.GlowStickTrailLightMixin",
-    "emotecraft.EmoteSendForPlayerMixin"
+    "emotecraft.EmoteSendForPlayerMixin",
+    "agoodplace.AGoodPlaceLoginMixin"
   ]
 }

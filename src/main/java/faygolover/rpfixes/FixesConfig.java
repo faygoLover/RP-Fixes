@@ -33,6 +33,8 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue PLAYER_DEBUG_LIMITS;
     public static final ForgeConfigSpec.BooleanValue BREACHING_KEEP_LIGHTS;
     public static final ForgeConfigSpec.BooleanValue TIPS_PAUSE_ONLY;
+    public static final ForgeConfigSpec.BooleanValue AGP_TAGS_AFTER_JOIN;
+    public static final ForgeConfigSpec.BooleanValue LSO_THERMOMETER_HUD;
     public static final ForgeConfigSpec.BooleanValue SA_FLASHLIGHT_OCCLUSION;
 
     static {
@@ -108,6 +110,15 @@ public final class FixesConfig {
         SA_FLASHLIGHT_OCCLUSION = B.comment("Survivor's Arsenal, клиент: фонарь не светит сквозь стены. Фонарь, которого камера не видит, не рисуется;",
                         "дальность луча обрезается по стене, в которую он упёрся. Свой фонарь от первого лица не меняется.")
                 .define("sa_flashlight_occlusion", true);
+        AGP_TAGS_AFTER_JOIN = B.comment("A Good Place, клиент: списки блоков для анимаций установки мод читал в момент входа на сервер, когда теги",
+                        "от сервера ещё не пришли. При первом входе после запуска игры он падал (Missing tag minecraft:flowers), и событие",
+                        "входа не доходило до модов после него: JEI, голосовой чат, JourneyMap, TaCZ и др. — игрока приходилось кикать.",
+                        "С исправлением списки читаются, когда теги пришли.")
+                .define("agp_tags_after_join", true);
+        LSO_THERMOMETER_HUD = B.comment("Legendary Survival Overhaul + RP Core, клиент: термометр LSO (значок температуры или градусник) — элемент",
+                        "общего HUD: двигать, масштабировать и скрывать в /rphud. Сдвиги из конфига LSO тогда не действуют.",
+                        "Применяется после перезапуска игры.")
+                .define("lso_thermometer_hud", true);
         B.pop();
         SPEC = B.build();
     }
