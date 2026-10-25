@@ -34,6 +34,20 @@ public class RpFixes {
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CnpcScheduler::onServerStopped);
         // Terralith: без рекламы в чате при первом запуске мира.
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.TerralithIntro::onServerStarted);
+        // SCP: Overtime / CraftedCore / Walkers: меньше пакетов и команд каждый тик (классы грузятся только при своём моде).
+        var mods = net.minecraftforge.fml.ModList.get();
+        if (mods.isLoaded("scpo")) {
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.ScpoTicks::onJoin);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.ScpoTicks::onLeave);
+        }
+        if (mods.isLoaded("craftedcore")) {
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CraftedCoreSync::onLogin);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CraftedCoreSync::onLogout);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CraftedCoreSync::onRespawn);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CraftedCoreSync::onDimension);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CraftedCoreSync::onStartTracking);
+        }
+        if (mods.isLoaded("walkers")) MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.WalkersCooldownSync::onDimension);
         // Клиент: эмоции (player-animation-lib) поверх Fresh Animations (EMF).
         if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
             var modBus = net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus();

@@ -12,7 +12,15 @@
     "customnpcs.CnpcSchedulerAccess",
     "effortless.EffortlessLogMixin",
     "debug.ServerGamePacketListenerAlbumDebugMixin",
-    "breaching.NightstickLightsMixin"
+    "breaching.NightstickLightsMixin",
+    "scpo.ScpoChaseThemeMixin",
+    "scpo.ScpoRemoveTeam178Mixin",
+    "scpo.ScpoRemoveNVGMixin",
+    "scpo.ScpoRemoveMalOMixin",
+    "scpo.ScpoSculptureTickMixin",
+    "scpo.ScpoHunterMixin",
+    "craftedcore.PlayerDataSyncMixin",
+    "walkers.AbilityCooldownSyncMixin"
   ],
   "injectors": {
     "defaultRequire": 1

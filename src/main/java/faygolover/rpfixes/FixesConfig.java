@@ -36,6 +36,9 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue AGP_TAGS_AFTER_JOIN;
     public static final ForgeConfigSpec.BooleanValue LSO_THERMOMETER_HUD;
     public static final ForgeConfigSpec.BooleanValue SA_FLASHLIGHT_OCCLUSION;
+    public static final ForgeConfigSpec.BooleanValue SCPO_TICKS;
+    public static final ForgeConfigSpec.BooleanValue CRAFTEDCORE_SYNC_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue WALKERS_COOLDOWN_ON_CHANGE;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -119,6 +122,16 @@ public final class FixesConfig {
                         "общего HUD: двигать, масштабировать и скрывать в /rphud. Сдвиги из конфига LSO тогда не действуют.",
                         "Применяется после перезапуска игры.")
                 .define("lso_thermometer_hud", true);
+        SCPO_TICKS = B.comment("SCP: Overtime, сервер: его процедуры каждого тика без команд и лишних пакетов. Музыка погони SCP-106 —",
+                        "сброс и /stopsound всем только когда погоня кончилась (было: каждый тик от каждого игрока, N² пакетов);",
+                        "выход из команд 178/966/1471 без шлема или эффекта — проверкой на Java, а не командой; function scpo:tick —",
+                        "только когда на сервере есть SCP-173/023/650/096/689; «охотник во тьме» ищет только SCP-689. Поведение то же.")
+                .define("scpo_tick_patches", true);
+        CRAFTEDCORE_SYNC_ON_CHANGE = B.comment("CraftedCore (морфы Walkers/RemorphED), сервер: данные игрока слать ему и остальным, только когда они изменились",
+                        "(было: каждый тик себе и всем в мире). При входе, возрождении, смене мира и когда игрока начинают видеть — полностью.")
+                .define("craftedcore_sync_on_change", true);
+        WALKERS_COOLDOWN_ON_CHANGE = B.comment("Walkers, сервер: откат способности морфа слать игроку, только когда он изменился (было: каждый тик).")
+                .define("walkers_cooldown_on_change", true);
         B.pop();
         SPEC = B.build();
     }
