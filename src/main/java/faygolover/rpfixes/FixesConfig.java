@@ -36,6 +36,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue AGP_TAGS_AFTER_JOIN;
     public static final ForgeConfigSpec.BooleanValue LSO_THERMOMETER_HUD;
     public static final ForgeConfigSpec.BooleanValue SA_FLASHLIGHT_OCCLUSION;
+    public static final ForgeConfigSpec.BooleanValue SA_FLASHLIGHT_SOFT;
     public static final ForgeConfigSpec.BooleanValue SCPO_TICKS;
     public static final ForgeConfigSpec.BooleanValue CRAFTEDCORE_SYNC_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue WALKERS_COOLDOWN_ON_CHANGE;
@@ -114,6 +115,10 @@ public final class FixesConfig {
         SA_FLASHLIGHT_OCCLUSION = B.comment("Survivor's Arsenal, клиент: фонарь не светит сквозь стены. Фонарь, которого камера не видит, не рисуется;",
                         "дальность луча обрезается по стене, в которую он упёрся. Свой фонарь от первого лица не меняется.")
                 .define("sa_flashlight_occlusion", true);
+        SA_FLASHLIGHT_SOFT = B.comment("Survivor's Arsenal, клиент: когда FL Render светит фонарём по-настоящему (блоки и сущности в луче освещены),",
+                        "экранный круг фонаря только подчёркивает пятно (усиление 0,55 вместо 6,4, без подъёма чёрного). Без FL Render",
+                        "и с шейдерпаком круг как у мода.")
+                .define("sa_flashlight_soft", true);
         AGP_TAGS_AFTER_JOIN = B.comment("A Good Place, клиент: списки блоков для анимаций установки мод читал в момент входа на сервер, когда теги",
                         "от сервера ещё не пришли. При первом входе после запуска игры он падал (Missing tag minecraft:flowers), и событие",
                         "входа не доходило до модов после него: JEI, голосовой чат, JourneyMap, TaCZ и др. — игрока приходилось кикать.",

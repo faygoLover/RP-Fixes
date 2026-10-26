@@ -1,0 +1,216 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "src_alpha",
+    "dstrgb": "one_minus_src_alpha"
+  },
+  "vertex": "blit",
+  "fragment": "rpfixes:sa_flash",
+  "attributes": [
+    "Position"
+  ],
+  "samplers": [
+    {
+      "name": "DiffuseSampler"
+    },
+    {
+      "name": "DiffuseDepthSampler"
+    }
+  ],
+  "uniforms": [
+    {
+      "name": "ProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "InvProjMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "InvViewMat",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "BeamOrigin",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "BeamAxis",
+      "type": "matrix4x4",
+      "count": 16,
+      "values": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "BeamCount",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "OutSize",
+      "type": "float",
+      "count": 2,
+      "values": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "name": "CoreCone",
+      "type": "float",
+      "count": 2,
+      "values": [
+        0.92,
+        0.866
+      ]
+    },
+    {
+      "name": "SpillCone",
+      "type": "float",
+      "count": 2,
+      "values": [
+        0.848,
+        0.743
+      ]
+    },
+    {
+      "name": "WashCone",
+      "type": "float",
+      "count": 2,
+      "values": [
+        0.743,
+        0.602
+      ]
+    },
+    {
+      "name": "LobeWeights",
+      "type": "float",
+      "count": 2,
+      "values": [
+        0.34,
+        0.18
+      ]
+    },
+    {
+      "name": "LightColor",
+      "type": "float",
+      "count": 3,
+      "values": [
+        1.0,
+        0.96,
+        0.88
+      ]
+    },
+    {
+      "name": "FlCone",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "name": "ShaderPackMode",
+      "type": "float",
+      "count": 1,
+      "values": [
+        0.0
+      ]
+    }
+  ]
+}

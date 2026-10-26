@@ -45,6 +45,7 @@
     "tips.TipRenderHandlerMixin",
     "saflashlight.FlashlightBeamRangeAccess",
     "saflashlight.FlashlightBeamOcclusionMixin",
+    "saflashlight.FlashlightShaderMixin",
     "glowsticks.GlowStickLightMixin",
     "glowsticks.GlowStickTrailLightMixin",
     "emotecraft.EmoteSendForPlayerMixin",
