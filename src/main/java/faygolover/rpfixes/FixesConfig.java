@@ -39,6 +39,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue SCPO_TICKS;
     public static final ForgeConfigSpec.BooleanValue CRAFTEDCORE_SYNC_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue WALKERS_COOLDOWN_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue REMORPHED_SYNC_ON_CHANGE;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -132,6 +133,8 @@ public final class FixesConfig {
                 .define("craftedcore_sync_on_change", true);
         WALKERS_COOLDOWN_ON_CHANGE = B.comment("Walkers, сервер: откат способности морфа слать игроку, только когда он изменился (было: каждый тик).")
                 .define("walkers_cooldown_on_change", true);
+        REMORPHED_SYNC_ON_CHANGE = B.comment("RemorphED, сервер: список открытых морфов слать игроку, только когда он изменился (было: каждый тик, 20 пакетов в секунду).")
+                .define("remorphed_sync_on_change", true);
         B.pop();
         SPEC = B.build();
     }

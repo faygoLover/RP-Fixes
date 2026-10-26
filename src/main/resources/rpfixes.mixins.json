@@ -20,7 +20,8 @@
     "scpo.ScpoSculptureTickMixin",
     "scpo.ScpoHunterMixin",
     "craftedcore.PlayerDataSyncMixin",
-    "walkers.AbilityCooldownSyncMixin"
+    "walkers.AbilityCooldownSyncMixin",
+    "remorphed.UnlockedSyncMixin"
   ],
   "injectors": {
     "defaultRequire": 1

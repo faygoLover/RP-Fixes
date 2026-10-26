@@ -33,6 +33,7 @@ public final class RpFixesMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".scpo.")) return has("scpo");
         if (mixinClassName.contains(".craftedcore.")) return has("craftedcore");
         if (mixinClassName.contains(".walkers.")) return has("walkers");
+        if (mixinClassName.contains(".remorphed.")) return has("remorphed") && has("craftedcore");
         return true;
     }
 

@@ -26,6 +26,8 @@ public final class CraftedCoreSync {
     private CraftedCoreSync() {}
 
     private static final Map<UUID, CompoundTag> SELF = new ConcurrentHashMap<>(), ALL = new ConcurrentHashMap<>();
+    /** RemorphED: последний список открытых морфов, отправленный игроку (ключ — получатель, в пакете — чей список). */
+    private static final Map<UUID, Map<UUID, CompoundTag>> UNLOCKED = new ConcurrentHashMap<>();
 
     private static boolean on() {
         return FixesConfig.CRAFTEDCORE_SYNC_ON_CHANGE.get();
@@ -49,10 +51,22 @@ public final class CraftedCoreSync {
         ModernNetworking.sendToPlayers(players, id, tag);
     }
 
+    /** RemorphED: список открытых морфов — только если он изменился с последней отправки этому игроку. */
+    public static void unlocked(ServerPlayer target, ResourceLocation id, CompoundTag tag) {
+        if (FixesConfig.REMORPHED_SYNC_ON_CHANGE.get() && tag.hasUUID("uuid")) {
+            Map<UUID, CompoundTag> sent = UNLOCKED.computeIfAbsent(target.getUUID(), k -> new ConcurrentHashMap<>());
+            UUID who = tag.getUUID("uuid");
+            if (tag.equals(sent.get(who))) return;
+            sent.put(who, tag.copy());
+        }
+        ModernNetworking.sendToPlayer(target, id, tag);
+    }
+
     private static void forget(PlayerEvent e) {
         if (!(e.getEntity() instanceof ServerPlayer p)) return;
         SELF.remove(p.getUUID());
         ALL.remove(p.getUUID());
+        UNLOCKED.remove(p.getUUID());
     }
 
     public static void onLogin(PlayerEvent.PlayerLoggedInEvent e) { forget(e); }
