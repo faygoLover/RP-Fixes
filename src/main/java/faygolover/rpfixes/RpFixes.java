@@ -36,6 +36,8 @@ public class RpFixes {
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.TerralithIntro::onServerStarted);
         // SCP: Overtime / CraftedCore / Walkers: меньше пакетов и команд каждый тик (классы грузятся только при своём моде).
         var mods = net.minecraftforge.fml.ModList.get();
+        // Emotecraft: эмоция с потерянным «стопом» не висит у других вечно.
+        if (mods.isLoaded("emotecraft")) MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteStale::onServerTick);
         if (mods.isLoaded("scpo")) {
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.ScpoTicks::onJoin);
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.ScpoTicks::onLeave);

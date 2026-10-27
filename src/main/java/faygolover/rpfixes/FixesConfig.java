@@ -46,6 +46,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CSAUG_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue ZEROCONTACT_STAMINA_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue TEAM_REJOIN_NOOP;
+    public static final ForgeConfigSpec.DoubleValue EMOTE_STOP_DISTANCE;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -160,6 +161,9 @@ public final class FixesConfig {
         TEAM_REJOIN_NOOP = B.comment("Ванилла: «добавить в команду» того, кто уже в ней, ничего не делает (было: вывод и повторный вход — два",
                         "пакета всем игрокам; SCP: Overtime делает так каждый тик для шлемов SCP-178 и ПНВ, Mal-O, существ SCP-178).")
                 .define("team_rejoin_noop", true);
+        EMOTE_STOP_DISTANCE = B.comment("Emotecraft, сервер: игрок отошёл дальше стольких блоков от места, где начал эмоцию, — сервер заканчивает её",
+                        "и рассылает «стоп» всем (иначе при потерянном «стопе» другие видят его застывшим в эмоции, хотя он ходит). 0 — выкл.")
+                .defineInRange("emote_stop_distance", 2.0, 0.0, 64.0);
         B.pop();
         SPEC = B.build();
     }
