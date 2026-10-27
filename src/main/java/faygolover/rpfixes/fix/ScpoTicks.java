@@ -33,7 +33,15 @@ import net.scpo.init.ScpoModItems;
 import net.scpo.init.ScpoModMobEffects;
 import net.scpo.network.ScpoModVariables;
 
+import com.mojang.brigadier.ParseResults;
+import faygolover.rpfixes.FixesConfig;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.world.effect.MobEffectInstance;
+
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.WeakHashMap;
@@ -144,6 +152,45 @@ public final class ScpoTicks {
             entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.GENERIC)), 9999.0F);
             scp.teleportTo(x, y, z);
         }
+    }
+
+    // ---------- эффекты каждый тик ----------
+
+    /**
+     * Вместо addEffect каждый тик: эффект продлевается, только если его нет, он слабее нового или от него осталось
+     * не больше половины нового. Пока условие процедуры выполняется, эффект не пропадает; кончилось — эффект уходит не
+     * позже, чем у мода. Пакет эффекта игроку — раз в полсрока, а не каждый тик.
+     */
+    public static boolean refreshEffect(LivingEntity target, MobEffectInstance effect) {
+        if (!FixesConfig.SCPO_TICKS.get()) return target.addEffect(effect);
+        MobEffectInstance cur = target.getEffect(effect.getEffect());
+        if (cur != null && cur.getAmplifier() >= effect.getAmplifier()
+                && (cur.isInfiniteDuration() || cur.getDuration() > effect.getDuration() / 2)) return false;
+        return target.addEffect(effect);
+    }
+
+    // ---------- команды строкой ----------
+
+    private static final Map<Commands, Map<String, ParseResults<CommandSourceStack>>> PARSED = new WeakHashMap<>();
+
+    /**
+     * Commands.performPrefixedCommand без разбора строки каждый раз: разобранная команда запоминается (на этот набор
+     * команд сервера — после /reload он новый) и выполняется от нового источника. Источник у мода всегда с правами 4,
+     * координаты «~» и селекторы считаются при выполнении — результат тот же.
+     */
+    public static int command(Commands commands, CommandSourceStack source, String command) {
+        if (!FixesConfig.SCPO_TICKS.get()) return commands.performPrefixedCommand(source, command);
+        String s = command.startsWith("/") ? command.substring(1) : command;
+        Map<String, ParseResults<CommandSourceStack>> cache;
+        synchronized (PARSED) { cache = PARSED.computeIfAbsent(commands, k -> new HashMap<>()); }
+        ParseResults<CommandSourceStack> p = cache.get(s);
+        if (p == null) {
+            p = commands.getDispatcher().parse(s, source);
+            if (cache.size() < 512) cache.put(s, p);
+        } else {
+            p = new ParseResults<>(p.getContext().withSource(source), p.getReader(), p.getExceptions());
+        }
+        return commands.performCommand(p, s);
     }
 
     // ---------- MobTickSculptureProcedure ----------

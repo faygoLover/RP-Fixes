@@ -41,6 +41,11 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CRAFTEDCORE_SYNC_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue WALKERS_COOLDOWN_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue REMORPHED_SYNC_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue MCREATOR_SYNC_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue MEK_EXPLOSIVES_TIMER_LOCAL;
+    public static final ForgeConfigSpec.BooleanValue CSAUG_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue ZEROCONTACT_STAMINA_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue TEAM_REJOIN_NOOP;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -140,6 +145,21 @@ public final class FixesConfig {
                 .define("walkers_cooldown_on_change", true);
         REMORPHED_SYNC_ON_CHANGE = B.comment("RemorphED, сервер: список открытых морфов слать игроку, только когда он изменился (было: каждый тик, 20 пакетов в секунду).")
                 .define("remorphed_sync_on_change", true);
+        MCREATOR_SYNC_ON_CHANGE = B.comment("SCP: Overtime и Mekanism Explosives (MCreator), сервер: переменные игрока и мира слать, только когда они",
+                        "изменились (процедуры шлют их каждый тик; при входе, возрождении и смене измерения мод шлёт сам).")
+                .define("mcreator_sync_on_change", true);
+        MEK_EXPLOSIVES_TIMER_LOCAL = B.comment("Mekanism Explosives, сервер: общий таймер взрывчатки тикает без рассылки всем игрокам",
+                        "(было: каждый тик в каждом измерении — все переменные мода всем, ~110 пакетов/с на игрока). У клиента таймер тикает сам.")
+                .define("mekanismexplosives_timer_local", true);
+        CSAUG_ON_CHANGE = B.comment("[CS] Augmentations, сервер: пакет органов игроку и модификаторы CyberSpeed/CyberAttack*/CyberArmor/CyberHealth",
+                        "менять, только когда они изменились (было: каждый тик пакет и «снять и добавить» — UpdateAttributes каждый тик).")
+                .define("csaugmentations_on_change", true);
+        ZEROCONTACT_STAMINA_ON_CHANGE = B.comment("ZeroContact, сервер: выносливость игроку — только когда её значение или «вкл/выкл» изменились",
+                        "(было: каждый тик, и при выключенной выносливости ZeroContact тоже).")
+                .define("zerocontact_stamina_on_change", true);
+        TEAM_REJOIN_NOOP = B.comment("Ванилла: «добавить в команду» того, кто уже в ней, ничего не делает (было: вывод и повторный вход — два",
+                        "пакета всем игрокам; SCP: Overtime делает так каждый тик для шлемов SCP-178 и ПНВ, Mal-O, существ SCP-178).")
+                .define("team_rejoin_noop", true);
         B.pop();
         SPEC = B.build();
     }

@@ -21,7 +21,19 @@
     "scpo.ScpoHunterMixin",
     "craftedcore.PlayerDataSyncMixin",
     "walkers.AbilityCooldownSyncMixin",
-    "remorphed.UnlockedSyncMixin"
+    "remorphed.UnlockedSyncMixin",
+    "scpo.ScpoEffectRefreshMixin",
+    "scpo.ScpoCommandCacheMixin",
+    "mcreator.ScpoPlayerVarsSyncMixin",
+    "mcreator.ScpoMapVarsSyncMixin",
+    "mcreator.ScpoWorldVarsSyncMixin",
+    "mcreator.MekMapVarsSyncMixin",
+    "mcreator.MekWorldVarsSyncMixin",
+    "mcreator.MekTimersMixin",
+    "csaug.OrganDataMixin",
+    "zerocontact.StaminaPacketAccess",
+    "zerocontact.StaminaSyncMixin",
+    "vanilla.TeamRejoinMixin"
   ],
   "injectors": {
     "defaultRequire": 1

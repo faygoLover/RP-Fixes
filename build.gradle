@@ -88,6 +88,7 @@ dependencies {
     compileOnly files('libs/legendarysurvivaloverhaul-1.20.1-2.4.2.jar', 'libs/rpcore-0.8.6-1.20.1-forge.jar')
     // SCP: Overtime, CraftedCore, Walkers — заплатки трафика (26.10).
     compileOnly files('libs/scpo-2.1-forge-1.20.1.jar', 'libs/craftedcore-5.8.2.jar', 'libs/walkers-5.8.11.jar', 'libs/geckolib-forge-1.20.1-4.8.4.jar', 'libs/remorphed-4.2.jar')
+    compileOnly files('libs/MekanismExplosives-1.20.1-0.3.5.jar', 'libs/csaugmentations-1.0.6.6.jar', 'libs/ZeroContact-main-build-72-36c6a8f.jar')
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

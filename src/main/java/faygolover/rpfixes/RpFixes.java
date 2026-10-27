@@ -48,6 +48,12 @@ public class RpFixes {
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CraftedCoreSync::onStartTracking);
         }
         if (mods.isLoaded("walkers")) MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.WalkersCooldownSync::onDimension);
+        // MCreator (SCP:O, Mekanism Explosives), [CS] Augmentations: память «последнего отправленного» сбрасывается при смене
+        // измерения раньше, чем мод сам шлёт данные (HIGHEST).
+        if (mods.isLoaded("scpo") || mods.isLoaded("mekanismexplosives"))
+            MinecraftForge.EVENT_BUS.addListener(net.minecraftforge.eventbus.api.EventPriority.HIGHEST, faygolover.rpfixes.fix.McreatorSync::onDimension);
+        if (mods.isLoaded("csaugmentations"))
+            MinecraftForge.EVENT_BUS.addListener(net.minecraftforge.eventbus.api.EventPriority.HIGHEST, faygolover.rpfixes.fix.CsAugSync::onDimension);
         // Клиент: эмоции (player-animation-lib) поверх Fresh Animations (EMF).
         if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
             var modBus = net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus();
