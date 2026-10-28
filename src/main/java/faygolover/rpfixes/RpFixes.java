@@ -20,6 +20,7 @@ public class RpFixes {
 
     public RpFixes() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FixesConfig.SPEC);
+        FixesNet.init();
         MinecraftForge.EVENT_BUS.addListener(LeakFixes::onLogout);
         MinecraftForge.EVENT_BUS.addListener(LeakFixes::onServerTick);
         // Immersive Paintings: картины — только ГМу.
@@ -38,6 +39,12 @@ public class RpFixes {
         var mods = net.minecraftforge.fml.ModList.get();
         // Emotecraft: эмоция с потерянным «стопом» не висит у других вечно.
         if (mods.isLoaded("emotecraft")) MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteStale::onServerTick);
+        // Survivor's Arsenal: поза блочного лука для других — сервер рассылает «натягивает / нет».
+        if (mods.isLoaded("sa_combat")) {
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.SaBowSync::onStartTracking);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.SaBowSync::onLogout);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.SaBowSync::onClone);
+        }
         if (mods.isLoaded("scpo")) {
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.ScpoTicks::onJoin);
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.ScpoTicks::onLeave);
@@ -73,6 +80,11 @@ public class RpFixes {
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EffortlessKeys::onClientTick);
             // A Good Place: списки блоков — по приходу тегов, а не на входе (падал и обрывал вход для других модов).
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.AGoodPlaceTags::onTags);
+            // Survivor's Arsenal: поза лука других — по пакетам, сброс при выходе и смене мира.
+            if (mods.isLoaded("sa_combat")) {
+                MinecraftForge.EVENT_BUS.addListener((net.minecraftforge.client.event.ClientPlayerNetworkEvent.LoggingOut e) -> faygolover.rpfixes.fix.SaWeaponPoses.reset());
+                MinecraftForge.EVENT_BUS.addListener((net.minecraftforge.client.event.ClientPlayerNetworkEvent.Clone e) -> faygolover.rpfixes.fix.SaWeaponPoses.reset());
+            }
         }
     }
 }

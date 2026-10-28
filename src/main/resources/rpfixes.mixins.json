@@ -33,7 +33,12 @@
     "csaug.OrganDataMixin",
     "zerocontact.StaminaPacketAccess",
     "zerocontact.StaminaSyncMixin",
-    "vanilla.TeamRejoinMixin"
+    "vanilla.TeamRejoinMixin",
+    "emotecraft.EmoteServerNetworkAccess",
+    "saweapons.CompoundBowServerStateAccess",
+    "saweapons.CompoundBowStateAccess",
+    "saweapons.CompoundBowServerStateMixin",
+    "ihs.SittableEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -61,6 +66,7 @@
     "glowsticks.GlowStickLightMixin",
     "glowsticks.GlowStickTrailLightMixin",
     "emotecraft.EmoteSendForPlayerMixin",
-    "agoodplace.AGoodPlaceLoginMixin"
+    "agoodplace.AGoodPlaceLoginMixin",
+    "saweapons.PlayerRendererArmPoseMixin"
   ]
 }

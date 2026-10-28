@@ -47,6 +47,12 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue ZEROCONTACT_STAMINA_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue TEAM_REJOIN_NOOP;
     public static final ForgeConfigSpec.DoubleValue EMOTE_STOP_DISTANCE;
+    public static final ForgeConfigSpec.BooleanValue EMOTE_RESYNC;
+    public static final ForgeConfigSpec.IntValue EMOTE_RESYNC_INTERVAL;
+    public static final ForgeConfigSpec.IntValue EMOTE_RESYNC_WINDOW;
+    public static final ForgeConfigSpec.BooleanValue SA_CROSSBOW_POSE;
+    public static final ForgeConfigSpec.BooleanValue SA_BOW_POSE_SYNC;
+    public static final ForgeConfigSpec.BooleanValue IHS_CHAIR_FACING;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -164,6 +170,23 @@ public final class FixesConfig {
         EMOTE_STOP_DISTANCE = B.comment("Emotecraft, сервер: игрок отошёл дальше стольких блоков от места, где начал эмоцию, — сервер заканчивает её",
                         "и рассылает «стоп» всем (иначе при потерянном «стопе» другие видят его застывшим в эмоции, хотя он ходит). 0 — выкл.")
                 .defineInRange("emote_stop_distance", 2.0, 0.0, 64.0);
+        EMOTE_RESYNC = B.comment("Emotecraft, сервер: выравнивание. Если у игрока сейчас нет эмоции, а последняя кончилась недавно, раз в",
+                        "emote_resync_interval тиков всем, кто его видит, снова уходит «стоп» этой эмоции (несколько байт): застрявшая у",
+                        "кого-то эмоция (лёг, а сам ходит) снимается за это время. Играющим эмоцию ничего не досылается.")
+                .define("emote_resync", true);
+        EMOTE_RESYNC_INTERVAL = B.comment("Emotecraft, выравнивание: раз во сколько тиков слать «стоп» (кратно 10; 100 = 5 с).")
+                .defineInRange("emote_resync_interval", 100, 10, 72000);
+        EMOTE_RESYNC_WINDOW = B.comment("Emotecraft, выравнивание: сколько секунд после конца эмоции ещё слать её «стоп».")
+                .defineInRange("emote_resync_window", 600, 1, 86400);
+        SA_CROSSBOW_POSE = B.comment("Survivor's Arsenal, клиент: тактический и самодельный арбалет и гвоздомёт в руке — у всех игроков (и у себя",
+                        "в виде от 3-го лица) поза «оружие перед собой» двумя руками, как заряженный ванильный арбалет. У мода позы нет.")
+                .define("sa_crossbow_pose", true);
+        SA_BOW_POSE_SYNC = B.comment("Survivor's Arsenal: блочный лук — другие видят, что игрок натягивает или целится (поза лука), а не лук у ног.",
+                        "Сервер рассылает «натягивает / нет» своим пакетом; нужно на сервере и у игрока. Свой игрок — как у мода.")
+                .define("sa_bow_pose_sync", true);
+        IHS_CHAIR_FACING = B.comment("industrialhellscape: сидящий на стуле (офисные кресла) телом смотрит туда же, куда стул, голова — не дальше 85°",
+                        "от тела. Было: у других тело оставалось, как при посадке, и сидящий бывал развёрнут спиной к столу.")
+                .define("ihs_chair_facing", true);
         B.pop();
         SPEC = B.build();
     }
