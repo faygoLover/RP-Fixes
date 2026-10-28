@@ -38,7 +38,8 @@
     "saweapons.CompoundBowServerStateAccess",
     "saweapons.CompoundBowStateAccess",
     "saweapons.CompoundBowServerStateMixin",
-    "ihs.SittableEntityMixin"
+    "ihs.SittableEntityMixin",
+    "emotecraft.EmoteSendForPlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -65,7 +66,6 @@
     "saflashlight.FlashlightShaderMixin",
     "glowsticks.GlowStickLightMixin",
     "glowsticks.GlowStickTrailLightMixin",
-    "emotecraft.EmoteSendForPlayerMixin",
     "agoodplace.AGoodPlaceLoginMixin",
     "saweapons.PlayerRendererArmPoseMixin"
   ]
