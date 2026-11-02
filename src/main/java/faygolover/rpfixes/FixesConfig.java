@@ -53,6 +53,12 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue SA_CROSSBOW_POSE;
     public static final ForgeConfigSpec.BooleanValue SA_BOW_POSE_SYNC;
     public static final ForgeConfigSpec.BooleanValue IHS_CHAIR_FACING;
+    public static final ForgeConfigSpec.BooleanValue SBW_IFF_NEEDED_ONLY;
+    public static final ForgeConfigSpec.IntValue SECURITYCRAFT_CAMERA_SYNC_SECONDS;
+    public static final ForgeConfigSpec.BooleanValue BUTCHERY_GRINDER_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue CNPC_NO_PLAYER_SOUNDS;
+    public static final ForgeConfigSpec.BooleanValue CLANGINGHOWL_QUIET;
+    public static final ForgeConfigSpec.BooleanValue FARMCHARM_SATURATION_ON_CHANGE;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -184,9 +190,25 @@ public final class FixesConfig {
         SA_BOW_POSE_SYNC = B.comment("Survivor's Arsenal: блочный лук — другие видят, что игрок натягивает или целится (поза лука), а не лук у ног.",
                         "Сервер рассылает «натягивает / нет» своим пакетом; нужно на сервере и у игрока. Свой игрок — как у мода.")
                 .define("sa_bow_pose_sync", true);
-        IHS_CHAIR_FACING = B.comment("industrialhellscape: сидящий на стуле (офисные кресла) телом смотрит туда же, куда стул, голова — не дальше 85°",
-                        "от тела. Было: у других тело оставалось, как при посадке, и сидящий бывал развёрнут спиной к столу.")
+        IHS_CHAIR_FACING = B.comment("industrialhellscape: на стуле (офисные кресла) игрок при посадке поворачивается вперёд (от спинки), взгляд — не дальше",
+                        "80° от стула (как стулья SovietEra). Было: садились лицом к спинке, у других тело оставалось, как при посадке.")
                 .define("ihs_chair_facing", true);
+        SBW_IFF_NEEDED_ONLY = B.comment("Superb Warfare, сервер: положения союзников (PlayerInfoSync, EntityRelationSync) — только тем, у кого",
+                        "тактическая карта включена (enable_tactical_map) и терминал надет. Было: каждый тик каждому про каждого, N² пакетов.")
+                .define("sbw_iff_needed_only", true);
+        SECURITYCRAFT_CAMERA_SYNC_SECONDS = B.comment("SecurityCraft, сервер: вращающуюся камеру сверять с игроками раз во столько секунд (клиент крутит её сам).",
+                        "0 — как у мода: весь блок каждый тик.")
+                .defineInRange("securitycraft_camera_sync_seconds", 5, 0, 600);
+        BUTCHERY_GRINDER_ON_CHANGE = B.comment("Butchery, сервер: мясорубка шлёт обновление блока, только когда он изменился (было: дважды за тик, и пустая тоже).")
+                .define("butchery_grinder_on_change", true);
+        CNPC_NO_PLAYER_SOUNDS = B.comment("Custom NPCs, клиент: не слать серверу каждый свой звук (нужно только скриптам игрока на playSound, у нас их нет).")
+                .define("customnpcs_no_player_sounds", true);
+        CLANGINGHOWL_QUIET = B.comment("Clanging Howl: клиент шлёт «двигаюсь» только про себя и при смене (было: каждый тик про каждое видимое существо),",
+                        "мобам с эффектами это считает сервер; счётчик «в воздухе» сервер не рассылает каждый тик — клиент считает его сам.")
+                .define("clanginghowl_quiet", true);
+        FARMCHARM_SATURATION_ON_CHANGE = B.comment("farm_and_charm, сервер: сытость животного — при смене и раз в 10 с, только тем, у кого загружен его чанк",
+                        "(было: каждое животное каждый тик всем игрокам измерения).")
+                .define("farm_and_charm_saturation_on_change", true);
         B.pop();
         SPEC = B.build();
     }

@@ -39,7 +39,13 @@
     "saweapons.CompoundBowStateAccess",
     "saweapons.CompoundBowServerStateMixin",
     "ihs.SittableEntityMixin",
-    "emotecraft.EmoteSendForPlayerMixin"
+    "emotecraft.EmoteSendForPlayerMixin",
+    "sbw.IffSyncMixin",
+    "securitycraft.CameraRotationSyncMixin",
+    "butchery.MeatGrinderSyncMixin",
+    "clanginghowl.MovingSyncMixin",
+    "clanginghowl.AirTicksSyncMixin",
+    "farmandcharm.SaturationSyncMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -67,6 +73,7 @@
     "glowsticks.GlowStickLightMixin",
     "glowsticks.GlowStickTrailLightMixin",
     "agoodplace.AGoodPlaceLoginMixin",
-    "saweapons.PlayerRendererArmPoseMixin"
+    "saweapons.PlayerRendererArmPoseMixin",
+    "customnpcs.PlayerSoundMixin"
   ]
 }
