@@ -45,7 +45,8 @@
     "butchery.MeatGrinderSyncMixin",
     "clanginghowl.MovingSyncMixin",
     "clanginghowl.AirTicksSyncMixin",
-    "farmandcharm.SaturationSyncMixin"
+    "farmandcharm.SaturationSyncMixin",
+    "carryon.LostPassengerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

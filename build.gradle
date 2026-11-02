@@ -94,6 +94,8 @@ dependencies {
     // Superb Warfare, farm_and_charm, Clanging Howl, SecurityCraft, Butchery — заплатки трафика (02.11).
     compileOnly files('libs/superbwarfare-0.8.9.1.jar', 'libs/letsdo-farm_and_charm-forge-1.0.14.jar', 'libs/clanginghowl-1.1.0.jar')
     compileOnly files('libs/securitycraft-1.10.1.jar', 'libs/butchery-5.1-forge-1.20.1.jar')
+    // Carry On — NPE при потерянном пассажире (03.11).
+    compileOnly files('libs/carryon-forge-1.20.1-2.1.2.7.jar')
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

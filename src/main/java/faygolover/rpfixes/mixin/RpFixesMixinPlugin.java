@@ -44,6 +44,7 @@ public final class RpFixesMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".butchery.")) return has("butchery");
         if (mixinClassName.contains(".clanginghowl.")) return has("clanginghowl");
         if (mixinClassName.contains(".farmandcharm.")) return has("farm_and_charm");
+        if (mixinClassName.contains(".carryon.")) return has("carryon");
         return true;
     }
 

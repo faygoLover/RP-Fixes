@@ -59,6 +59,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CNPC_NO_PLAYER_SOUNDS;
     public static final ForgeConfigSpec.BooleanValue CLANGINGHOWL_QUIET;
     public static final ForgeConfigSpec.BooleanValue FARMCHARM_SATURATION_ON_CHANGE;
+    public static final ForgeConfigSpec.BooleanValue CARRYON_LOST_PASSENGER;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -209,6 +210,9 @@ public final class FixesConfig {
         FARMCHARM_SATURATION_ON_CHANGE = B.comment("farm_and_charm, сервер: сытость животного — при смене и раз в 10 с, только тем, у кого загружен его чанк",
                         "(было: каждое животное каждый тик всем игрокам измерения).")
                 .define("farm_and_charm_saturation_on_change", true);
+        CARRYON_LOST_PASSENGER = B.comment("Carry On, сервер: несёт игрока, а пассажира уже нет (вышел, слез, телепортирован) — при ПКМ по сущности ношу",
+                        "сбросить (было: NPE в tryStackEntity, и несущий «нёс пустоту», не мог ничего поднять).")
+                .define("carryon_lost_passenger", true);
         B.pop();
         SPEC = B.build();
     }
