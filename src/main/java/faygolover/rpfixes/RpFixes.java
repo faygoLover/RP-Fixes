@@ -80,6 +80,12 @@ public class RpFixes {
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EffortlessKeys::onClientTick);
             // A Good Place: списки блоков — по приходу тегов, а не на входе (падал и обрывал вход для других модов).
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.AGoodPlaceTags::onTags);
+            // Emotecraft: настройки серверу ещё раз, если флаг «сервер ведёт эмоции» после входа не пришёл.
+            if (mods.isLoaded("emotecraft")) {
+                MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteConfigRetry::onLogin);
+                MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteConfigRetry::onLogout);
+                MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteConfigRetry::onClientTick);
+            }
             // Survivor's Arsenal: поза лука других — по пакетам, сброс при выходе и смене мира.
             if (mods.isLoaded("sa_combat")) {
                 MinecraftForge.EVENT_BUS.addListener((net.minecraftforge.client.event.ClientPlayerNetworkEvent.LoggingOut e) -> faygolover.rpfixes.fix.SaWeaponPoses.reset());

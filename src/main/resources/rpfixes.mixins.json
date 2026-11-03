@@ -75,6 +75,7 @@
     "glowsticks.GlowStickTrailLightMixin",
     "agoodplace.AGoodPlaceLoginMixin",
     "saweapons.PlayerRendererArmPoseMixin",
-    "customnpcs.PlayerSoundMixin"
+    "customnpcs.PlayerSoundMixin",
+    "emotecraft.ClientRepeatMixin"
   ]
 }

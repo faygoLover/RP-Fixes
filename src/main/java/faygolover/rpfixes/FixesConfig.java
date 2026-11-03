@@ -60,6 +60,8 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CLANGINGHOWL_QUIET;
     public static final ForgeConfigSpec.BooleanValue FARMCHARM_SATURATION_ON_CHANGE;
     public static final ForgeConfigSpec.BooleanValue CARRYON_LOST_PASSENGER;
+    public static final ForgeConfigSpec.BooleanValue EMOTE_CONFIG_RETRY;
+    public static final ForgeConfigSpec.BooleanValue EMOTE_NO_CLIENT_REPEAT;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -213,6 +215,12 @@ public final class FixesConfig {
         CARRYON_LOST_PASSENGER = B.comment("Carry On, сервер: несёт игрока, а пассажира уже нет (вышел, слез, телепортирован) — при ПКМ по сущности ношу",
                         "сбросить (было: NPE в tryStackEntity, и несущий «нёс пустоту», не мог ничего поднять).")
                 .define("carryon_lost_passenger", true);
+        EMOTE_CONFIG_RETRY = B.comment("Emotecraft, клиент: если после входа сервер не прислал флаг «эмоции веду я» (потерялось событие входа или",
+                        "регистрации канала), раз в 5 с ещё раз отправить ему настройки (до 5 раз).")
+                .define("emote_config_retry", true);
+        EMOTE_NO_CLIENT_REPEAT = B.comment("Emotecraft, клиент: не повторять свою эмоцию каждому новому игроку рядом, если у сервера есть Emotecraft —",
+                        "сервер рассылает её сам (было: повтор, сервер его отбрасывал со строкой «does not respect server-side emote tracking»).")
+                .define("emote_no_client_repeat", true);
         B.pop();
         SPEC = B.build();
     }
