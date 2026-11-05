@@ -15,6 +15,9 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
 
+// Общие версии семейства: текущие jar-ы и версии модов из ../_family (python _family/family.py sync).
+if (file('../_family/family.gradle').exists()) apply from: '../_family/family.gradle'
+
 apply plugin: 'org.spongepowered.mixin'
 
 version = mod_version
@@ -85,7 +88,8 @@ dependencies {
     compileOnly files('libs/sa_essentials-forge-1.20.1-1.0.0-fixed.jar')
     compileOnly files('libs/glow_sticks-forge-1.20.1-7.5.1.jar')
     compileOnly files('libs/emotecraft-for-MC1.20.1-2.2.7-b.build.50-forge.jar')
-    compileOnly files('libs/legendarysurvivaloverhaul-1.20.1-2.4.2.jar', 'libs/rpcore-0.8.6-1.20.1-forge.jar')
+    compileOnly files('libs/legendarysurvivaloverhaul-1.20.1-2.4.2.jar')
+    compileOnly files(project.hasProperty('familyLibs') ? "${familyLibs}/rpcore-${rpcore_version}.jar" : 'libs/rpcore-0.8.6-1.20.1-forge.jar')
     // SCP: Overtime, CraftedCore, Walkers — заплатки трафика (26.10).
     compileOnly files('libs/scpo-2.1-forge-1.20.1.jar', 'libs/craftedcore-5.8.2.jar', 'libs/walkers-5.8.11.jar', 'libs/geckolib-forge-1.20.1-4.8.4.jar', 'libs/remorphed-4.2.jar')
     compileOnly files('libs/MekanismExplosives-1.20.1-0.3.5.jar', 'libs/csaugmentations-1.0.6.6.jar', 'libs/ZeroContact-main-build-72-36c6a8f.jar')
