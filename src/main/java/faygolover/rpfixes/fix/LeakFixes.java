@@ -12,12 +12,9 @@ import java.util.Map;
 
 /**
  * Заплатки от утечек памяти чужих модов (найдены по дампу кучи сервера «Департамент S5» 07.10.2026):
- * <ul>
- *   <li>Tacz Attribute Add 1.4.0 — {@code ShooterContext.shooterContext} (Map&lt;Thread, LivingEntity&gt;) держит
- *       последнего стрелка каждого потока, в том числе вышедшего игрока или убранного моба;</li>
- *   <li>Sanity: Descent Into Madness 1.1.0 — {@code InnerEntitySpawner.PLAYER_TO_SPAWN_TIMEOUT}
- *       (Map&lt;ServerPlayer, Integer&gt;) никогда не чистится: каждый вход оставляет игрока в памяти.</li>
- * </ul>
+ * Tacz Attribute Add 1.4.0 — {@code ShooterContext.shooterContext} (Map&lt;Thread, LivingEntity&gt;) держит последнего
+ * стрелка каждого потока, в том числе вышедшего игрока или убранного моба. (Заплатка Sanity: Descent Into Madness убрана
+ * в 1.5.7 — его заменил RP Psyche.)
  * Чистим при выходе игрока и раз в минуту — убранные сущности. Поля ищем по имени; не нашли (другая версия
  * мода) — заплатка тихо выключается.
  */
@@ -26,18 +23,14 @@ public final class LeakFixes {
 
     private static final String TAA_CLASS = "com.xlxyvergil.taa.context.ShooterContext";
     private static final String TAA_FIELD = "shooterContext";
-    private static final String SANITY_CLASS = "croissantnova.sanitydim.entity.InnerEntitySpawner";
-    private static final String SANITY_FIELD = "PLAYER_TO_SPAWN_TIMEOUT";
 
     private static Map<?, ?> taa;
-    private static Map<?, ?> sanity;
     private static boolean looked;
 
     private static void lookUp() {
         if (looked) return;
         looked = true;
         if (ModList.get().isLoaded("taa")) taa = staticMap(TAA_CLASS, TAA_FIELD);
-        if (ModList.get().isLoaded("sanitydim")) sanity = staticMap(SANITY_CLASS, SANITY_FIELD);
     }
 
     private static Map<?, ?> staticMap(String cls, String field) {
@@ -72,11 +65,6 @@ public final class LeakFixes {
         if (taa != null && FixesConfig.FIX_TAA_LEAK.get()) {
             synchronized (taa) {
                 taa.values().removeIf(v -> v == gone || v instanceof Entity en && en.isRemoved());
-            }
-        }
-        if (sanity != null && FixesConfig.FIX_SANITY_LEAK.get()) {
-            synchronized (sanity) {
-                sanity.keySet().removeIf(k -> k == gone || k instanceof Entity en && en.isRemoved());
             }
         }
     }

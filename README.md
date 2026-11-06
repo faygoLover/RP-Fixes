@@ -7,7 +7,6 @@
 | Заплатка | Мод | Что делает | Настройка (`config/rpfixes-common.toml`) |
 |---|---|---|---|
 | утечка стрелков | Tacz Attribute Add (`taa`) | не держит в памяти вышедших игроков и убранных стрелков | `fixes.taa_shooter_leak` |
-| утечка игроков | Sanity: Descent Into Madness (`sanitydim`) | убирает вышедших игроков из таблицы спавна | `fixes.sanity_player_leak` |
 | ленивые состояния блоков | WorldEdit 7.2.x (`worldedit`) | при старте сервера WorldEdit строил свои копии всех состояний всех блоков сборки (~769 тыс., ~3 ГБ кучи); теперь — только для блоков, которых он коснулся. Команды работают как раньше | `fixes.worldedit_lazy_states` |
 | безопасные сгибы | bendy-lib + player-animation-lib | локти и колени гнутся только у кусков модели, которые это умеют; у моделей EMF/Fresh Animations и оружейных модов их пропускает вместо вылета | `fixes.safe_bends` |
 | Hold My Items и свои предметы | Hold My Items (`holdmyitems`) | HMI не трогает предметы со своим видом в руке: свой отрисовщик, своя поза рук или своя рука в 1-м лице (оружие, GeckoLib), и моды из списка. Дополняет его исключения в памяти, файл HMI не меняется | `fixes.hmi_auto_exclude`, `fixes.hmi_exclude_mods` |
