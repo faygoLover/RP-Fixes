@@ -24,8 +24,6 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
     public static final ForgeConfigSpec.BooleanValue TERRALITH_NO_INTRO;
     public static final ForgeConfigSpec.BooleanValue EFFORTLESS_QUIET;
-    public static final ForgeConfigSpec.BooleanValue DEBUG_SKIN;
-    public static final ForgeConfigSpec.BooleanValue DEBUG_ALBUM;
     public static final ForgeConfigSpec.BooleanValue CNPC_KEEP_PLAYER_SKIN;
     public static final ForgeConfigSpec.BooleanValue CNPC_SCHEDULER_SHUTDOWN;
     public static final ForgeConfigSpec.BooleanValue FIGURA_INVENTORY_SCISSOR;
@@ -108,10 +106,6 @@ public final class FixesConfig {
         EFFORTLESS_QUIET = B.comment("Effortless Building: вне творческого режима его сообщения не показываются; в сборке игрока",
                         "(без WorldEdit) все его клавиши при запуске снимаются.")
                 .define("effortless_quiet", true);
-        DEBUG_SKIN = B.comment("Диагностика, клиент: первые 2 минуты после входа писать в лог смену своего скина и пакеты списка игроков про себя.")
-                .define("debug_skin", false);
-        DEBUG_ALBUM = B.comment("Диагностика: клики в альбоме Exposure (клиент и сервер) — в лог.")
-                .define("debug_album", false);
         CNPC_KEEP_PLAYER_SKIN = B.comment("Custom NPCs, клиент: не затирать настоящий скин игрока (Ely.by) стандартным. Скин, заданный ГМом через CNPC, работает.")
                 .define("cnpc_keep_player_skin", true);
         CNPC_SCHEDULER_SHUTDOWN = B.comment("Custom NPCs, сервер: закрывать его пул задач после остановки сервера (иначе процесс висел на выключении).",

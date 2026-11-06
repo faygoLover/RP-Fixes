@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.Unique;
 
 /**
  * industrialhellscape 0.3.6A, сиденье стульев ({@code SittableEntity}, офисные кресла): сущность ставится с поворотом 0
- * и поворот седока никак не держит. Сделано как стулья SovietEraV3 ({@code SeatEntity}): вперёд у стула — обратная
- * сторона {@code facing} блока (там спинка). При посадке сервер поворачивает игрока вперёд; дальше взгляд не уходит
+ * и поворот седока никак не держит. Сделано как стулья SovietEraV3 ({@code SeatEntity}), но у кресел IHS вперёд —
+ * сам {@code facing} блока: в модели при {@code facing=north} спинка на южной стороне (z 11–14). При посадке сервер поворачивает игрока вперёд; дальше взгляд не уходит
  * дальше 80° от стула — ограничение у клиента седока при каждом движении мыши (как у лодки), без поворотов каждый тик.
  */
 @Mixin(SittableEntity.class)
@@ -37,7 +37,7 @@ public abstract class SittableEntityMixin extends Entity {
     @Unique
     private Float rpfixes$seatYaw() {
         Direction facing = level().getBlockState(blockPosition()).getOptionalValue(BlockStateProperties.HORIZONTAL_FACING).orElse(null);
-        return facing == null ? null : facing.getOpposite().toYRot();
+        return facing == null ? null : facing.toYRot();
     }
 
     @Override
