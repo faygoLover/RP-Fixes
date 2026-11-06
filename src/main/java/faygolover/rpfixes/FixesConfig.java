@@ -60,6 +60,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue CARRYON_LOST_PASSENGER;
     public static final ForgeConfigSpec.BooleanValue EMOTE_CONFIG_RETRY;
     public static final ForgeConfigSpec.BooleanValue EMOTE_NO_CLIENT_REPEAT;
+    public static final ForgeConfigSpec.BooleanValue CARRYON_HAND;
 
     static {
         B.comment("Исправления чужих модов. Срабатывают, только если такой мод установлен.").push("fixes");
@@ -215,6 +216,9 @@ public final class FixesConfig {
         EMOTE_NO_CLIENT_REPEAT = B.comment("Emotecraft, клиент: не повторять свою эмоцию каждому новому игроку рядом, если у сервера есть Emotecraft —",
                         "сервер рассылает её сам (было: повтор, сервер его отбрасывал со строкой «does not respect server-side emote tracking»).")
                 .define("emote_no_client_repeat", true);
+        CARRYON_HAND = B.comment("Carry On, клиент: ношу от 1-го лица рисовать раньше «Пустой руки» RP Core (было: при неудачном порядке загрузки",
+                        "модов ноша пропадала из рук и была видна только на взмахе).")
+                .define("carryon_hand", true);
         B.pop();
         SPEC = B.build();
     }

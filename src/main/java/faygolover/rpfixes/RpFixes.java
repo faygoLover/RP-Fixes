@@ -85,6 +85,10 @@ public class RpFixes {
                 MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteConfigRetry::onLogout);
                 MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteConfigRetry::onClientTick);
             }
+            // Carry On: ноша от 1-го лица — раньше «Пустой руки» RP Core, которая отменяет событие руки.
+            if (mods.isLoaded("carryon"))
+                MinecraftForge.EVENT_BUS.addListener(net.minecraftforge.eventbus.api.EventPriority.HIGH, false,
+                        net.minecraftforge.client.event.RenderHandEvent.class, faygolover.rpfixes.fix.CarryOnHand::onRenderHand);
             // Survivor's Arsenal: поза лука других — по пакетам, сброс при выходе и смене мира.
             if (mods.isLoaded("sa_combat")) {
                 MinecraftForge.EVENT_BUS.addListener((net.minecraftforge.client.event.ClientPlayerNetworkEvent.LoggingOut e) -> faygolover.rpfixes.fix.SaWeaponPoses.reset());
