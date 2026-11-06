@@ -20,6 +20,8 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> HMI_EXCLUDE_MODS;
     public static final ForgeConfigSpec.BooleanValue PAINTINGS_GM_ONLY;
     public static final ForgeConfigSpec.IntValue PAINTINGS_GM_LEVEL;
+    public static final ForgeConfigSpec.BooleanValue PERK_LOCKS;
+    public static final ForgeConfigSpec.DoubleValue TECHNOPHOBE_KEYCARD_FAIL;
     public static final ForgeConfigSpec.BooleanValue TERRALITH_KEEP_WORLD_TYPE;
     public static final ForgeConfigSpec.BooleanValue TERRALITH_NO_INTRO;
     public static final ForgeConfigSpec.BooleanValue EFFORTLESS_QUIET;
@@ -95,6 +97,11 @@ public final class FixesConfig {
                 .define("paintings_gm_only", true);
         PAINTINGS_GM_LEVEL = B.comment("Уровень прав (op), с которого игрок считается ГМом для картин.")
                 .defineInRange("paintings_gm_level", 2, 0, 4);
+        PERK_LOCKS = B.comment("Особенности RP Perks, сервер: замки Survivor's Arsenal и Cuffed вскрывает отмычкой только «Взлом»;",
+                        "«Технофоб» не меняет частоту рации Simple Radio, карту в считывателе SA проводит не с первого раза.")
+                .define("perk_locks", true);
+        TECHNOPHOBE_KEYCARD_FAIL = B.comment("«Технофоб»: доля неудачных попыток провести карту в считывателе SA (0.6 — в среднем со 2–3 раза).")
+                .defineInRange("technophobe_keycard_fail", 0.6, 0.0, 1.0);
         TERRALITH_KEEP_WORLD_TYPE = B.comment("Terralith: суперплоский, «один биом» и отладочный мир остаются такими, как выбраны",
                         "(его датапак подменял любой тип мира). Обычный, «большие биомы» и «расширенный» — Terralith как был.")
                 .define("terralith_keep_world_type", true);

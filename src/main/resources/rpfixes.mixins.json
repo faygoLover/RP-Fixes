@@ -45,7 +45,10 @@
     "clanginghowl.MovingSyncMixin",
     "clanginghowl.AirTicksSyncMixin",
     "farmandcharm.SaturationSyncMixin",
-    "carryon.LostPassengerMixin"
+    "carryon.LostPassengerMixin",
+    "salocks.SaLockpickMixin",
+    "cufflocks.CuffedLockpickMixin",
+    "simpleradio.RadioTuneMixin"
   ],
   "injectors": {
     "defaultRequire": 1
