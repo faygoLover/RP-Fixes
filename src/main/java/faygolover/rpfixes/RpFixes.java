@@ -40,6 +40,8 @@ public class RpFixes {
         var mods = net.minecraftforge.fml.ModList.get();
         // Emotecraft: эмоция с потерянным «стопом» не висит у других вечно.
         if (mods.isLoaded("emotecraft")) MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EmoteStale::onServerTick);
+        // Cuffed: скованный по ногам снимает путы своим ключом.
+        if (mods.isLoaded("cuffed")) MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CuffedSelfKey::onRightClickItem);
         // Survivor's Arsenal: поза блочного лука для других — сервер рассылает «натягивает / нет».
         if (mods.isLoaded("sa_combat")) {
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.SaBowSync::onStartTracking);

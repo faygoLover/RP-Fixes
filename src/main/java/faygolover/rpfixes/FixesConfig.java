@@ -15,6 +15,7 @@ public final class FixesConfig {
     public static final ForgeConfigSpec.BooleanValue SAFE_BENDS;
     public static final ForgeConfigSpec.BooleanValue LAZY_BENDS;
     public static final ForgeConfigSpec.BooleanValue CUFFED_EMOTE_LOCK;
+    public static final ForgeConfigSpec.BooleanValue CUFFED_SELF_KEY;
     public static final ForgeConfigSpec.BooleanValue HMI_AUTO_EXCLUDE;
     public static final ForgeConfigSpec.BooleanValue SECURITYCRAFT_FRAME_FOG;
     public static final ForgeConfigSpec.ConfigValue<java.util.List<? extends String>> HMI_EXCLUDE_MODS;
@@ -84,6 +85,8 @@ public final class FixesConfig {
         CUFFED_EMOTE_LOCK = B.comment("Cuffed + эмоции (player-animation-lib), клиент: связанные части тела эмоция не двигает —",
                         "руки в путах, ноги в путах, голова в колодке; в колодке-блоке эмоция не трогает ничего.")
                 .define("cuffed_emote_lock", true);
+        CUFFED_SELF_KEY = B.comment("Cuffed, сервер: ПКМ подходящим ключом снимает путы со своих ног, если руки свободны.")
+                .define("cuffed_self_key", true);
         HMI_AUTO_EXCLUDE = B.comment("Hold My Items, клиент: не трогать предметы со своим видом в руке — свой отрисовщик, своя поза рук",
                         "или своя рука в 1-м лице (оружие, предметы GeckoLib...). Дополняет списки исключений HMI в памяти, его файл не меняется.")
                 .define("hmi_auto_exclude", true);

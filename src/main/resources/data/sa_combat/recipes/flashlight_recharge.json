@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "sa_combat"
+    }
+  ],
+  "type": "sa_combat:flashlight_recharge",
+  "category": "equipment"
+}

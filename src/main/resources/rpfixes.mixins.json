@@ -73,6 +73,8 @@
     "saflashlight.FlashlightShaderMixin",
     "glowsticks.GlowStickLightMixin",
     "glowsticks.GlowStickTrailLightMixin",
+    "glowsticks.GlowStickNoCollisionMixin",
+    "glowsticks.CreativeGlowStickNoCollisionMixin",
     "agoodplace.AGoodPlaceLoginMixin",
     "saweapons.PlayerRendererArmPoseMixin",
     "customnpcs.PlayerSoundMixin",
