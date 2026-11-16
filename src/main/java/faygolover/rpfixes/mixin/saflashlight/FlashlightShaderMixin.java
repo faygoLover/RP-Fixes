@@ -11,9 +11,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
 import java.util.List;
 
 /**
@@ -40,30 +37,8 @@ public abstract class FlashlightShaderMixin {
     private static void rpfixes$cone(CallbackInfo ci) {
         List<PostPass> current = passes;
         if (current == null) return;
-        float cone = enabled() && flRenderLight() ? 1.0F : 0.0F;
+        float cone = enabled() && faygolover.rpfixes.compat.FlRenderCompat.flashlightLight() ? 1.0F : 0.0F;
         for (PostPass pass : current) pass.getEffect().safeGetUniform("FlCone").set(cone);
-    }
-
-    private static MethodHandle flashlightLight;
-    private static boolean looked;
-
-    private static boolean flRenderLight() {
-        if (!looked) {
-            looked = true;
-            try {
-                Class<?> api = Class.forName("faygolover.flrender.api.FlRender");
-                flashlightLight = MethodHandles.publicLookup().findStatic(api, "flashlightLight", MethodType.methodType(boolean.class));
-            } catch (ReflectiveOperationException | LinkageError ignored) {
-                // FL Render нет или старый — круг как у мода.
-            }
-        }
-        if (flashlightLight == null) return false;
-        try {
-            return (boolean) flashlightLight.invokeExact();
-        } catch (Throwable t) {
-            flashlightLight = null;
-            return false;
-        }
     }
 
     private static boolean enabled() {

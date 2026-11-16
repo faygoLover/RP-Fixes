@@ -1,16 +1,17 @@
 # RP Fixes — указатель кода
 
-Создано `python _family/tools/mapgen.py` 15.11.2026, версия 1.5.8-1.20.1-forge, коммит `88df3b3`.
+Создано `python _family/tools/mapgen.py`, версия мода 1.5.9-1.20.1-forge.
 **Руками не править**: пересоздаётся скриптом. Смысл, потоки работы и рецепты — в `docs/MAP.md`.
 Разбор по шаблонам, без компиляции: необычно оформленная регистрация может отсутствовать в списках.
 
-Всего: 106 файлов, 4399 строк Java.
+Всего: 107 файлов, 4405 строк Java.
 
 ## 1. Пакеты
 
 | Пакет | Файлов | Строк |
 |---|---:|---:|
 | `faygolover.rpfixes` | 3 | 398 |
+| `faygolover.rpfixes.compat` | 1 | 31 |
 | `faygolover.rpfixes.fix` | 34 | 1939 |
 | `faygolover.rpfixes.mixin` | 1 | 64 |
 | `faygolover.rpfixes.mixin.agoodplace` | 1 | 25 |
@@ -34,7 +35,7 @@
 | `faygolover.rpfixes.mixin.ihs` | 1 | 67 |
 | `faygolover.rpfixes.mixin.mcreator` | 6 | 129 |
 | `faygolover.rpfixes.mixin.remorphed` | 1 | 23 |
-| `faygolover.rpfixes.mixin.saflashlight` | 3 | 155 |
+| `faygolover.rpfixes.mixin.saflashlight` | 3 | 130 |
 | `faygolover.rpfixes.mixin.salocks` | 1 | 28 |
 | `faygolover.rpfixes.mixin.saweapons` | 4 | 100 |
 | `faygolover.rpfixes.mixin.sbw` | 1 | 33 |
@@ -54,6 +55,9 @@
 - `FixesConfig`, 232 — Конфиг RP Fixes: config/rpfixes-common.toml.
 - `FixesNet`, 63 — Свой сетевой канал RP Fixes (с 1.5.4).
 - `RpFixes`, 103 — RP Fixes — заплатки чужих модов сборки (ревью 11.10, п.
+
+### `faygolover.rpfixes.compat`
+- `FlRenderCompat`, 31 — FL Render (необязательный): светит ли сейчас настоящий свет фонаря.
 
 ### `faygolover.rpfixes.fix`
 - `AGoodPlaceTags`, 48 — A Good Place: списки блоков анимаций разбираются, когда клиент получил теги от сервера (на входе их ещё нет, см.
@@ -179,7 +183,7 @@
 ### `faygolover.rpfixes.mixin.saflashlight`
 - `FlashlightBeamOcclusionMixin`, 63 — Survivor's Arsenal (sa_combat) 1.0.0, клиент: фонарь светит экранным эффектом — осветляет каждый видимый пиксель в своём конусе (до 38 блоков), стен между фонарём и поверхностью он не знает.
 - `FlashlightBeamRangeAccess` (interface), 15 — Дальность луча фонаря Survivor's Arsenal (final у мода) — для FlashlightBeamOcclusionMixin.
-- `FlashlightShaderMixin`, 77 — Survivor's Arsenal (sa_combat) 1.0.0, клиент: экранный круг фонаря умножает уже тёмный кадр на 6,4 и добавляет подъём — в полной тьме цвета взять неоткуда (серое), светлое упирается в белый (люди белые).
+- `FlashlightShaderMixin`, 52 — Survivor's Arsenal (sa_combat) 1.0.0, клиент: экранный круг фонаря умножает уже тёмный кадр на 6,4 и добавляет подъём — в полной тьме цвета взять неоткуда (серое), светлое упирается в белый (люди белые).
 
 ### `faygolover.rpfixes.mixin.salocks`
 - `SaLockpickMixin`, 28 — Survivor's Arsenal: взлом замка отмычкой (ящик с лутом, дверь, навесной замок) — только с особенностью «Взлом».
@@ -230,7 +234,7 @@
 - `StaminaPacketAccess` (interface), 12 — ZeroContact: содержимое пакета выносливости — для сравнения с последним отправленным.
 - `StaminaSyncMixin`, 21 — ZeroContact: PlayerStamina.staminaTick шлёт игроку выносливость каждый тик — и когда его выносливость выключена (staminaState = false, у нас своя RP Stamina).
 
-Классов без описания: 0 из 106.
+Классов без описания: 0 из 107.
 
 ## 3. Подписки на события
 
@@ -287,7 +291,7 @@
 
 ## 9. Связи с другими модами
 
-Проверки `isLoaded`: `a_good_place` (AGoodPlaceTags); `carryon` (RpFixes); `craftedcore` (RpFixes); `csaugmentations` (RpFixes); `cuffed` (RpFixes); `customnpcs` (CnpcScheduler); `effortlessbuilding` (EffortlessKeys); `emotecraft` (RpFixes); `entity_model_features` (EmoteFixes); `holdmyitems` (HmiAutoExclude); `legendarysurvivaloverhaul` (LsoThermometerHud, RpFixes); `mekanismexplosives` (RpFixes); `playeranimator` (EmoteFixes); `rpcore` (LsoThermometerHud, RpFixes); `rpperks` (PerkLocks); `sa_combat` (RpFixes); `scpo` (RpFixes); `taa` (LeakFixes); `terralith` (TerralithIntro); `walkers` (RpFixes); `worldedit` (EffortlessKeys).
+Проверки `isLoaded`: `a_good_place` (AGoodPlaceTags); `carryon` (RpFixes); `craftedcore` (RpFixes); `csaugmentations` (RpFixes); `cuffed` (RpFixes); `customnpcs` (CnpcScheduler); `effortlessbuilding` (EffortlessKeys); `emotecraft` (RpFixes); `entity_model_features` (EmoteFixes); `flrender` (FlRenderCompat); `holdmyitems` (HmiAutoExclude); `legendarysurvivaloverhaul` (LsoThermometerHud, RpFixes); `mekanismexplosives` (RpFixes); `playeranimator` (EmoteFixes); `rpcore` (LsoThermometerHud, RpFixes); `rpperks` (PerkLocks); `sa_combat` (RpFixes); `scpo` (RpFixes); `taa` (LeakFixes); `terralith` (TerralithIntro); `walkers` (RpFixes); `worldedit` (EffortlessKeys).
 
 Отражение (`Class.forName`):
 - `AGoodPlaceTags` → `nl.enjarai.a_good_place.pack.AnimationsManager`
@@ -296,7 +300,6 @@
 - `EmoteFixes` → `dev.kosmx.playerAnim.api.IPlayer`
 - `EmoteFixes` → `dev.kosmx.playerAnim.api.layered.AnimationStack`
 - `EmoteFixes` → `traben.entity_model_features.EMFAnimationApi`
-- `FlashlightShaderMixin` → `faygolover.flrender.api.FlRender`
 - `FogRendererFrameFeedMixin` → `net.geforcemods.securitycraft.entity.camera.FrameFeedHandler`
 - `FogRendererFrameFeedMixin` → `net.geforcemods.securitycraft.blockentities.FrameBlockEntity`
 

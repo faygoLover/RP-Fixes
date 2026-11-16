@@ -77,6 +77,8 @@ mixin {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    // FL Render — необязательный: только для компиляции compat/FlRenderCompat (jar — в ../_family/libs).
+    compileOnly fg.deobf("blank:flrender:${flrender_version}")
     // WorldEdit 7.2.15 (jar из сборки, libs/ в .gitignore) — только для компиляции заплатки; в игре он не обязателен.
     compileOnly files('libs/worldedit-mod-7.2.15.jar')
     // player-animation-lib + bendy-lib — только для компиляции заплатки сгибов.
