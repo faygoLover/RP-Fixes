@@ -15,6 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class RadioTuneMixin {
     @Inject(method = "handleRadioUpdate", at = @At("HEAD"), cancellable = true, require = 0, remap = false)
     private static void rpfixes$technophobe(@Coerce Object packet, MinecraftServer server, ServerPlayer player, CallbackInfo ci) {
-        if (player != null && faygolover.rpfixes.fix.PerkLocks.denyRadioTune(player)) ci.cancel();
+        if (player != null && faygolover.rpfixes.s5.PerkLocks.denyRadioTune(player)) ci.cancel();
     }
 }

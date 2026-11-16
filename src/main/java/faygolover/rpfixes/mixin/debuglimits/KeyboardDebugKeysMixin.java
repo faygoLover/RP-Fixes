@@ -1,6 +1,6 @@
 package faygolover.rpfixes.mixin.debuglimits;
 
-import faygolover.rpfixes.fix.PlayerDebugLimits;
+import faygolover.rpfixes.s5.PlayerDebugLimits;
 import net.minecraft.client.KeyboardHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

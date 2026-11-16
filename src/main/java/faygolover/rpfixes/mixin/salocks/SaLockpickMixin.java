@@ -22,6 +22,6 @@ public abstract class SaLockpickMixin {
     @Inject(method = "startSession", at = @At("HEAD"), cancellable = true, require = 0, remap = false)
     private static void rpfixes$hackerOnly(ServerPlayer player, Level level, BlockPos pos, InteractionHand hand, @Coerce Object type,
                                            CallbackInfoReturnable<InteractionResult> cir) {
-        if (faygolover.rpfixes.fix.PerkLocks.denyLockpick(player)) cir.setReturnValue(InteractionResult.FAIL);
+        if (faygolover.rpfixes.s5.PerkLocks.denyLockpick(player)) cir.setReturnValue(InteractionResult.FAIL);
     }
 }

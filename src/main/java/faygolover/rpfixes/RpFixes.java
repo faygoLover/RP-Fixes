@@ -24,18 +24,18 @@ public class RpFixes {
         MinecraftForge.EVENT_BUS.addListener(LeakFixes::onLogout);
         MinecraftForge.EVENT_BUS.addListener(LeakFixes::onServerTick);
         // Immersive Paintings: картины — только ГМу.
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onJoin);
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onInteract);
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onInteractSpecific);
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onAttack);
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onUseOnBlock);
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PaintingsGmOnly::onBreak);
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.PerkLocks::onUseBlock);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PaintingsGmOnly::onJoin);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PaintingsGmOnly::onInteract);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PaintingsGmOnly::onInteractSpecific);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PaintingsGmOnly::onAttack);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PaintingsGmOnly::onUseOnBlock);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PaintingsGmOnly::onBreak);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.PerkLocks::onUseBlock);
         // Custom NPCs: его пул задач не держит процесс после остановки сервера.
         faygolover.rpfixes.fix.CnpcScheduler.init();
         MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.CnpcScheduler::onServerStopped);
         // Terralith: без рекламы в чате при первом запуске мира.
-        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.TerralithIntro::onServerStarted);
+        MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.TerralithIntro::onServerStarted);
         // SCP: Overtime / CraftedCore / Walkers: меньше пакетов и команд каждый тик (классы грузятся только при своём моде).
         var mods = net.minecraftforge.fml.ModList.get();
         // Emotecraft: эмоция с потерянным «стопом» не висит у других вечно.
@@ -73,13 +73,13 @@ public class RpFixes {
             // LSO: термометр — элемент общего HUD RP Core (/rphud). Класс грузится только при обоих модах.
             modBus.addListener((net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e) -> {
                 if (net.minecraftforge.fml.ModList.get().isLoaded("rpcore") && net.minecraftforge.fml.ModList.get().isLoaded("legendarysurvivaloverhaul"))
-                    faygolover.rpfixes.fix.LsoThermometerHud.init();
+                    faygolover.rpfixes.s5.LsoThermometerHud.init();
             });
             // Hold My Items: исключить предметы со своим видом в руке — когда все моды загружены.
             modBus.addListener((net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent e) -> e.enqueueWork(faygolover.rpfixes.fix.HmiAutoExclude::init));
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.HmiAutoExclude::onClientTick);
             // Effortless Building: в сборке игрока без клавиш.
-            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.EffortlessKeys::onClientTick);
+            MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.s5.EffortlessKeys::onClientTick);
             // A Good Place: списки блоков — по приходу тегов, а не на входе (падал и обрывал вход для других модов).
             MinecraftForge.EVENT_BUS.addListener(faygolover.rpfixes.fix.AGoodPlaceTags::onTags);
             // Emotecraft: настройки серверу ещё раз, если флаг «сервер ведёт эмоции» после входа не пришёл.

@@ -4,7 +4,7 @@
 **Руками не править**: пересоздаётся скриптом. Смысл, потоки работы и рецепты — в `docs/MAP.md`.
 Разбор по шаблонам, без компиляции: необычно оформленная регистрация может отсутствовать в списках.
 
-Всего: 107 файлов, 4405 строк Java.
+Всего: 108 файлов, 4413 строк Java.
 
 ## 1. Пакеты
 
@@ -12,7 +12,7 @@
 |---|---:|---:|
 | `faygolover.rpfixes` | 3 | 398 |
 | `faygolover.rpfixes.compat` | 1 | 31 |
-| `faygolover.rpfixes.fix` | 34 | 1939 |
+| `faygolover.rpfixes.fix` | 27 | 1540 |
 | `faygolover.rpfixes.mixin` | 1 | 64 |
 | `faygolover.rpfixes.mixin.agoodplace` | 1 | 25 |
 | `faygolover.rpfixes.mixin.anomaly` | 1 | 20 |
@@ -48,6 +48,7 @@
 | `faygolover.rpfixes.mixin.walkers` | 1 | 18 |
 | `faygolover.rpfixes.mixin.worldedit` | 2 | 48 |
 | `faygolover.rpfixes.mixin.zerocontact` | 2 | 33 |
+| `faygolover.rpfixes.s5` | 8 | 407 |
 
 ## 2. Классы
 
@@ -71,8 +72,6 @@
 - `CsAugSync`, 51 — [CS] Augmentations: пакет органов и модификаторы — только при изменении (см.
 - `CuffedEmotes`, 47 — Эмоции (player-animation-lib: Emotecraft, RP Sports, Better Combat) на связанном игроке (Cuffed): анимация играет, но связанные части остаются как их держит Cuffed.
 - `CuffedSelfKey`, 29 — Cuffed: ключ работает только по другому игроку, поэтому скованный по ногам не мог снять путы сам, хотя руки свободны.
-- `EffortlessKeys`, 41 — Клиентская половина EffortlessQuiet: в сборке игрока снять клавиши Effortless Building.
-- `EffortlessQuiet`, 23 — Effortless Building у игроков (20.10.2026): в survival он и так выключен (allowInSurvival=false), но писал в чат на Alt, Ctrl+Z и т.
 - `EmoteConfigRetry`, 44 — Emotecraft, клиент: свои настройки клиент шлёт серверу, только когда до него дошли оба события — вход (LoggingIn) и регистрация канала.
 - `EmoteFixes`, 57 — Эмоции Emotecraft и анимации RP Sports (player-animation-lib) с Fresh Animations (Entity Model Features): обе стороны двигают модель игрока, и EMF перекладывает части поверх эмоции — персонаж садится «раком», заваливается набок (н…
 - `EmoteStale`, 106 — Emotecraft, сервер: зацикленная эмоция (лечь, сесть) считается играющей, пока от игрока не придёт «стоп».
@@ -81,16 +80,11 @@
 - `HmiAutoExclude`, 135 — Hold My Items рисует руку и предмет в 1-м лице по-своему и спорит с модами, у которых свой вид предмета в руке (оружие TaCZ/Superb Warfare/LesRaisins, предметы GeckoLib и т.п.).
 - `LazyBends`, 9 — Часть тела, которую сейчас ставит эмоция (AnimationApplier.updatePart), — для направления сгиба в BendHelperMixin.
 - `LeakFixes`, 72 — Заплатки от утечек памяти чужих модов (найдены по дампу кучи сервера «Департамент S5» 07.10.2026): Tacz Attribute Add 1.4.0 — ShooterContext.shooterContext (Map&lt;Thread, LivingEntity&gt;) держит последнего стрелка каждого потока…
-- `LsoThermometerHud`, 94 — Legendary Survival Overhaul, клиент: термометр (значок температуры над хотбаром или градусник с цифрами, если термометр надет в Curios) — элемент общего HUD RP Core.
 - `McreatorSync`, 55 — Моды MCreator (SCP: Overtime, Mekanism Explosives): переменные игрока (syncPlayerVariables) и мира (syncData — всем игрокам сервера или измерения) процедуры шлют каждый тик, даже если ничего не поменялось.
-- `PaintingsGmOnly`, 99 — Immersive Paintings: картины и граффити — инструмент ГМа.
-- `PerkLocks`, 63 — Особенности RP Perks в чужих модах (решения Алекса 06.11, RP Perks 2.8.1): «Взлом» — только он вскрывает замки отмычкой: Survivor's Arsenal (ящики, двери, навесные замки) и Cuffed (замки, двери камер и сейфы, наручники).
-- `PlayerDebugLimits`, 50 — Игрокам без op 2 на сервере — без отладочных подсказок, которые дают лишнее знание: хитбоксы (F3+B, видны и невидимые сущности), расширенные подсказки предметов (F3+H), границы чанков (F3+G), субтитры (сторона источника звука за с…
 - `SaBowSync`, 62 — Survivor's Arsenal 1.0.0, сервер: блочный лук (CompoundBowItem) ставит позу «натягиваю» только своему игроку и по своему клиентскому состоянию — другие видят лук у ног.
 - `SaWeaponPoses`, 62 — Survivor's Arsenal 1.0.0, клиент: поза рук с оружием мода у игроков в виде от 3-го лица.
 - `SbwSync`, 23 — Superb Warfare: положения и «свой/чужой» союзников нужны только тактической карте у того, на ком терминал.
 - `ScpoTicks`, 246 — SCP: Overtime 2.1 (MCreator): процедуры, которые каждый тик выполняли команды или слали пакеты всем.
-- `TerralithIntro`, 29 — Terralith при первом запуске мира пишет всем в чат рекламу (Discord, хостинг): функция terralith:setup из тега minecraft:load ставит terralith:toast, если у %USED в tr.first меньше 2.
 - `WalkersCooldownSync`, 31 — Walkers: откат способности уходит игроку, только когда изменился (грузится только при установленном Walkers).
 - `WorldEditLazyStates`, 95 — Ленивые состояния блоков WorldEdit.
 - `ZeroContactSync`, 26 — ZeroContact: последнее отправленное игроку значение выносливости и её «вкл/выкл».
@@ -234,7 +228,17 @@
 - `StaminaPacketAccess` (interface), 12 — ZeroContact: содержимое пакета выносливости — для сравнения с последним отправленным.
 - `StaminaSyncMixin`, 21 — ZeroContact: PlayerStamina.staminaTick шлёт игроку выносливость каждый тик — и когда его выносливость выключена (staminaState = false, у нас своя RP Stamina).
 
-Классов без описания: 0 из 107.
+### `faygolover.rpfixes.s5`
+- `EffortlessKeys`, 41 — Клиентская половина EffortlessQuiet: в сборке игрока снять клавиши Effortless Building.
+- `EffortlessQuiet`, 23 — Effortless Building у игроков (20.10.2026): в survival он и так выключен (allowInSurvival=false), но писал в чат на Alt, Ctrl+Z и т.
+- `LsoThermometerHud`, 94 — Legendary Survival Overhaul, клиент: термометр (значок температуры над хотбаром или градусник с цифрами, если термометр надет в Curios) — элемент общего HUD RP Core.
+- `PaintingsGmOnly`, 99 — Immersive Paintings: картины и граффити — инструмент ГМа.
+- `PerkLocks`, 63 — Особенности RP Perks в чужих модах (решения Алекса 06.11, RP Perks 2.8.1): «Взлом» — только он вскрывает замки отмычкой: Survivor's Arsenal (ящики, двери, навесные замки) и Cuffed (замки, двери камер и сейфы, наручники).
+- `PlayerDebugLimits`, 50 — Игрокам без op 2 на сервере — без отладочных подсказок, которые дают лишнее знание: хитбоксы (F3+B, видны и невидимые сущности), расширенные подсказки предметов (F3+H), границы чанков (F3+G), субтитры (сторона источника звука за с…
+- `TerralithIntro`, 29 — Terralith при первом запуске мира пишет всем в чат рекламу (Discord, хостинг): функция terralith:setup из тега minecraft:load ставит terralith:toast, если у %USED в tr.first меньше 2.
+- `package-info` (?), 8 — *без описания*
+
+Классов без описания: 1 из 108.
 
 ## 3. Подписки на события
 
@@ -296,12 +300,12 @@
 Отражение (`Class.forName`):
 - `AGoodPlaceTags` → `nl.enjarai.a_good_place.pack.AnimationsManager`
 - `CnpcPlayerSkins` → `noppes.npcs.controllers.PlayerSkinController`
-- `EffortlessKeys` → `nl.requios.effortlessbuilding.ClientEvents`
 - `EmoteFixes` → `dev.kosmx.playerAnim.api.IPlayer`
 - `EmoteFixes` → `dev.kosmx.playerAnim.api.layered.AnimationStack`
 - `EmoteFixes` → `traben.entity_model_features.EMFAnimationApi`
 - `FogRendererFrameFeedMixin` → `net.geforcemods.securitycraft.entity.camera.FrameFeedHandler`
 - `FogRendererFrameFeedMixin` → `net.geforcemods.securitycraft.blockentities.FrameBlockEntity`
+- `EffortlessKeys` → `nl.requios.effortlessbuilding.ClientEvents`
 
 Пакеты других модов семейства в коде: `flrender` — 1 файлов; `rpcore` — 2 файлов.
 

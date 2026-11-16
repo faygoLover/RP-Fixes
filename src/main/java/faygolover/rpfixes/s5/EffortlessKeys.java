@@ -1,4 +1,4 @@
-package faygolover.rpfixes.fix;
+package faygolover.rpfixes.s5;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import faygolover.rpfixes.FixesConfig;

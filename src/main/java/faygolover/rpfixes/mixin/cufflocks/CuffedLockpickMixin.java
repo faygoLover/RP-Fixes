@@ -16,16 +16,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class CuffedLockpickMixin {
     @Inject(method = "sendLockpickBeginPickingLockPacketToClient", at = @At("HEAD"), cancellable = true, require = 0)
     private static void rpfixes$lock(ServerPlayer player, int lockId, int speed, int progress, CallbackInfo ci) {
-        if (faygolover.rpfixes.fix.PerkLocks.denyLockpick(player)) ci.cancel();
+        if (faygolover.rpfixes.s5.PerkLocks.denyLockpick(player)) ci.cancel();
     }
 
     @Inject(method = "sendLockpickBeginPickingRestraintPacketToClient", at = @At("HEAD"), cancellable = true, require = 0)
     private static void rpfixes$restraint(ServerPlayer player, String restrained, int type, int speed, int progress, CallbackInfo ci) {
-        if (faygolover.rpfixes.fix.PerkLocks.denyLockpick(player)) ci.cancel();
+        if (faygolover.rpfixes.s5.PerkLocks.denyLockpick(player)) ci.cancel();
     }
 
     @Inject(method = "sendLockpickBeginPickingCellDoorPacketToClient", at = @At("HEAD"), cancellable = true, require = 0)
     private static void rpfixes$cellDoor(ServerPlayer player, BlockPos pos, int speed, int progress, CallbackInfo ci) {
-        if (faygolover.rpfixes.fix.PerkLocks.denyLockpick(player)) ci.cancel();
+        if (faygolover.rpfixes.s5.PerkLocks.denyLockpick(player)) ci.cancel();
     }
 }

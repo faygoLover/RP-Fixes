@@ -1,4 +1,4 @@
-package faygolover.rpfixes.fix;
+package faygolover.rpfixes.s5;
 
 import faygolover.rpcore.client.hud.Anchor;
 import faygolover.rpcore.client.hud.HudElement;

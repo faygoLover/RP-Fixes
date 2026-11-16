@@ -1,4 +1,4 @@
-package faygolover.rpfixes.fix;
+package faygolover.rpfixes.s5;
 
 import faygolover.rpfixes.FixesConfig;
 import net.minecraft.world.entity.player.Player;

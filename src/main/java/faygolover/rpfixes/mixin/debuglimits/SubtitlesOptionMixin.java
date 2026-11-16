@@ -1,6 +1,6 @@
 package faygolover.rpfixes.mixin.debuglimits;
 
-import faygolover.rpfixes.fix.PlayerDebugLimits;
+import faygolover.rpfixes.s5.PlayerDebugLimits;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import org.spongepowered.asm.mixin.Mixin;
